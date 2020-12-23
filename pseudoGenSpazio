@@ -1,0 +1,112 @@
+GEN_SPAZIO(Rete):
+	
+	listaFA= []
+	listaLINK = []
+	#Costruire lista stati iniziali FA, uno per ogni FA
+	foreach FA in Rete.listaFA:
+		listaFA += FA
+	
+	#Costruire lista link ecc.
+	foreach LINK in Rete.listaLINK:
+		listaLINK += NULL
+	
+	const nodoInitSpazio = (listaFA, listaLINK)
+	
+	listaNodi = []
+	listaFregne = []
+	
+	listaNodi += nodoInitSpazio
+	
+	
+	tailNodi = []
+	tailNodi += listaNodi[0]
+	
+	listaNodiFinali = []
+	id = 0
+	while tailNodi is not empty:
+		nodoCurr = tailNodi[0]
+		
+		foreach FA in nodo.listaFA:
+			foreach trans in FA.stato
+				if transEnable(trans, nodoCurr.listaLink):
+					nodoToAdd = cambioStato(trans, nodoCurr)
+					listaFregne.add(<nodoCurr, trans, nodoToAdd>)
+					
+					if nodoToAdd is not in listaNodi:
+						id = id + 1
+						nodoToAdd.id = id
+						
+						listaNodi.add(nodoToAdd)
+						tailNodi.push(nodoToAdd)
+						
+						toAdd = True
+						foreach LINK in nodoToAdd.listaLINK:
+							if LINK.contenuto is not NULL:
+								toAdd = False
+								break
+						if toAdd == True	
+							listaNodiFinali.add(nodoToAdd)
+							
+		
+		tailNodi.pop()
+	listaNodiFinaliTemp = copy(listaNodiFinali)
+	listaNodiTemp = copy(listaNodi)
+	#check Stati Grigi
+	
+	foreach nodoFinal in listaNodiFinaliTemp:
+		black = BFS(listaNodi, listaFregne, nodoFinal)
+		listaNodiFinaliTemp.remove(nodi in black)
+	
+		
+	
+	BFS() # Eseguzione prende l'automa con le transazioni invertite
+	Spazio spazio = new Spazio(statoIniziale, listaStatiFinali, listaNodi, listaFregne)
+	#TODO nella struttura aggiungere status listaNodi per dire se è finale #TODO
+
+def transEnable(transizione, listaLink):
+	linkTrans = transizione.evento[1]
+	if linkTrans in listaLink:
+		LINK = listaLink.get(linkTrans)
+		eventoTrans = transizione.evento[0]
+		if LINK.contenuto == eventoTrans:
+			return True
+	return False
+	
+def cambioStato(transizione, nodo):
+	linkTrans = transizione.evento[1]
+	eventoTrans = transizione.evento[0]
+	
+	LINK = nodo.listaLink.get(linkTrans)
+	LINK.contenuto = eventoTrans
+	
+	statoTrans = transizione.statoPartenza
+	stato = nodo.listaFA.get(statoTrans)
+	stato = transizione.statoUscita
+	
+	return nodo
+	
+def BFS(listaFregne, listaNodi, statoFinal):
+	grigi = []
+	black = []
+	
+	grigi.add(statoFinal)
+	
+	q = None
+	q.enqueue(statoFinal)
+	
+	while q is not empty:
+		nodo = q.dequeue()
+		foreach t in listaFregne.find(dest==nodo):
+			if t.part is not in grigi and is not black
+				q.enqueue = t.part
+				grigi.add(t.part)
+		
+		black.add(nodo)
+		grigi.remove(nodo)
+			
+	return black
+	
+
+
+
+

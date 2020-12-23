@@ -1,0 +1,53 @@
+FA:
+- id
+- lista di *stati
+- lista di *transizioni
+- *statoIniziale
+- *stato
+
+STATO:
+- id
+- accettazione (boolean - bit)
+
+TRANSIZIONE:
+- id
+- *STATO partenza
+- *STATO uscita
+- evento = (evento, link)
+- lista *eventi in uscita
+- *etichetta
+
+EVENTO:
+- id
+
+RETE:
+- lista FA
+- lista LINK
+
+SPAZIO:
+- *statoIniziale comp
+- lista *stati finali comp
+- lista *stati comp.
+- lista di *transizioni comp.
+
+NODO:
+- id
+- lista Contenuto link (input *rete FA)
+- lista Stati FAs (input *rete FA)
+
+FREGNA
+- id -> id *transizione (oggetto)
+- *nodi comp
+- *nodi comp
+
+LINK:
+- id
+- *FA di partenza
+- *FA di arrivo
+- value - contenuto
+
+ETICCHETTA OSSERVABILITA'
+- id
+
+ETTICCHETTA RILEVANZA
+- id
