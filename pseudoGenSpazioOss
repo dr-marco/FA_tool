@@ -1,20 +1,21 @@
-GEN_SPAZIO(Rete):
+GEN_SPAZIO_OSS(Rete, ListaOss):
 	
-	listaFA = []
+	listaFA= []
 	listaLINK = []
+	indiceOss = 0
 	
 	foreach FA in Rete.listaFA:
 		listaFA.add(FA)
 	foreach LINK in Rete.listaLINK:
 		listaLINK.add(LINK)
 	
-	nodoInitSpazio = <listaFA, listaLINK>
-	nodoInitSpazio.isFinal = True
+	const nodoInitSpazio = <listaFA, listaLINK, indiceOss>
 	
 	listaNodi = []
 	listaTratte = []
 	
 	listaNodi.add(nodoInitSpazio)
+	
 	
 	tailNodi = []
 	tailNodi.add(listaNodi[0])
@@ -26,37 +27,47 @@ GEN_SPAZIO(Rete):
 		foreach FA in nodo.listaFA:
 			foreach trans in FA.stato #controlliamo le transizioni che hanno come 				StatoPartenza FA.stato
 				if transEnable(trans, nodoCurr.listaLink):
-					nodoToAdd = cambioStato(trans, nodoCurr)
+					tupleCheck = checkTransOss(trans, ListaOss, nodoCurr.indice)
+					# tupleCheck value 1 = se si può fare la transizione checkTransOss
+					# tupleCHeck value 2 = se bisogna incrementare l'indice
+					if !tupleCheck.value1: #if is the right OSS
+						break
+							
+					nodoToAdd = cambioStato(trans, nodoCurr, tupleCheck.value2)
 					listaFregne.add(<nodoCurr, trans, nodoToAdd>)
 					
 					if nodoToAdd is not in listaNodi:
+						
 						listaNodi.add(nodoToAdd)
 						tailNodi.push(nodoToAdd)
 						
 						toAdd = True
 						foreach LINK in nodoToAdd.listaLINK:
-							if LINK.contenuto is not NULL:
+							if LINK.contenuto is not NULL :
 								toAdd = False
 								break
-						if toAdd == True	
+						if toAdd == True and nodoToAdd.indice == len(ListaOss):	
 							nodoToAdd.isFinal = True
 							
 		
 		tailNodi.pop()
-	listaNodiFinaliTemp = copy(listaNodi if isFinal == True)
 	
+	listaNodiFinaliTemp = copy(listaNodi  if isFinal == True)
+	
+	#POTATURA
 	foreach nodoFinal in listaNodiFinaliTemp:
 		black = BFS(listaNodi, listaFregne, nodoFinal)
 		listaNodiFinaliTemp.remove(nodi in black)
 	
+	#ETICHETTATURA
 	foreach nodo in listaNodi:
 		id = id + 1
 		nodo.id = id
 	
-	Spazio spazio = new Spazio(nodoInitSpazio, listaNodi, listaTratte)
+	Spazio spazio = new Spazio(statoIniziale, listaStatiFinali, listaNodi, listaFregne)
 	return spazio
 	#TODO nella struttura aggiungere status listaNodi per dire se è finale #TODO
-
+	
 def transEnable(transizione, listaLink):
 	linkTrans = transizione.eventolink.link
 	if linkTrans in listaLink:
@@ -66,7 +77,7 @@ def transEnable(transizione, listaLink):
 			return True
 	return False
 	
-def cambioStato(transizione, nodo):
+def cambioStato(transizione, nodo, toIncrement):
 	linkTrans = transizione.eventolink.link
 	eventoTrans = transizione.eventolink.evento
 	
@@ -77,7 +88,24 @@ def cambioStato(transizione, nodo):
 	stato = nodo.listaFA.get(statoTrans)
 	stato = transizione.statoUscita
 	
+	if toIncrement:
+		nodo.indiceOss += 1
+	
 	return nodo
+	
+	
+def checkTransOss(transizione, indice, listaOss):
+	if transazioni.etichetta is in listaOss: 
+		if transazini.etichetta != listaOss[indice]
+			return (False, False)
+		else:
+			return (True, True)
+	else:
+		if transazioni.etichetta.type == 'OSS':
+			return (False, False)
+		else:
+			return (True, False)
+			
 	
 def BFS(listaFregne, listaNodi, statoFinal):
 	grigi = []
@@ -100,8 +128,3 @@ def BFS(listaFregne, listaNodi, statoFinal):
 			
 	return black
 	
----------------------------------------------------------------------------------------------
-
-
-
-

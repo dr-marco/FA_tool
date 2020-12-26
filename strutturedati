@@ -1,53 +1,58 @@
 FA:
-- id
-- lista di *stati
-- lista di *transizioni
-- *statoIniziale
-- *stato
+- id:string
+- stati:list[Stato]
+- transizioni:list[Transizione]
+- statoIniziale:Stato
+- statoAttuale:Stato
 
 STATO:
-- id
-- accettazione (boolean - bit)
+- id:string
+- isFinal:boolean
 
 TRANSIZIONE:
-- id
-- *STATO partenza
-- *STATO uscita
-- evento = (evento, link)
-- lista *eventi in uscita
-- *etichetta
+- id:string
+- statoPartenza:Stato
+- statoArrivo:Stato
+- attivazione:EventoLink
+- outputEventi:list[EventoLink]
+- label:Label
 
-EVENTO:
-- id
+EVENTOLINK:
+- evento:Evento
+- link:Link
 
-RETE:
-- lista FA
-- lista LINK
-
-SPAZIO:
-- *statoIniziale comp
-- lista *stati finali comp
-- lista *stati comp.
-- lista di *transizioni comp.
-
-NODO:
-- id
-- lista Contenuto link (input *rete FA)
-- lista Stati FAs (input *rete FA)
-
-FREGNA
-- id -> id *transizione (oggetto)
-- *nodi comp
-- *nodi comp
+Evento:
+- id:string
 
 LINK:
-- id
-- *FA di partenza
-- *FA di arrivo
-- value - contenuto
+- id:string
+- startFA:FA
+- finishFA:FA
+- contenuto:Evento
 
-ETICCHETTA OSSERVABILITA'
-- id
+RETE:
+- listaFA:list[FA]
+- listaLINK:list[LINK]
 
-ETTICCHETTA RILEVANZA
-- id
+SPAZIO:
+- nodoIniziale:Nodo
+- listaNodi:list[Nodo]
+- listaTratte:list[Tratte]
+
+Nodo:
+- id:string
+- alias:string
+- listaStatoLinks:list[LINK].contenuto
+- listaStatoFA:list[FA].statoAttuale
+- isFinal:Boolean
+----------------------------------------
+- indiceOss:int
+
+Tratte:
+- id:string --> id Transizione
+- nodoPartenza:Nodo
+- nodoArrivo:Nodo
+
+Label
+- id:string
+- type:string
