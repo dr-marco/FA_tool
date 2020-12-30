@@ -24,7 +24,7 @@ GEN_SPAZIO(Rete):
 		nodoCurr = tailNodi[0]
 		
 		foreach FA in nodo.listaFA:
-			foreach trans in FA.stato #controlliamo le transizioni che hanno come 				StatoPartenza FA.stato
+			foreach trans in FA.stato #controlliamo le transizioni che hanno come StatoPartenza FA.stato
 				if transEnable(trans, nodoCurr.listaLink):
 					nodoToAdd = cambioStato(trans, nodoCurr)
 					listaFregne.add(<nodoCurr, trans, nodoToAdd>)

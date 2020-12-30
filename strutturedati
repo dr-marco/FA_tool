@@ -15,7 +15,8 @@ TRANSIZIONE:
 - statoArrivo:Stato
 - attivazione:EventoLink
 - outputEventi:list[EventoLink]
-- label:Label
+- labelOss:Label
+- labelRil:Label
 
 EVENTOLINK:
 - evento:Evento
@@ -39,6 +40,12 @@ SPAZIO:
 - listaNodi:list[Nodo]
 - listaTratte:list[Tratte]
 
+CHIUSURA: (nel caso extend)
+- nodoIniziale:NodoChiusura
+- listaNodi:list[NodoChiusura]
+- listaTratte:list[Tratte]
+- listaTratteUscenti:list[Tratte]
+
 Nodo:
 - id:string
 - alias:string
@@ -48,11 +55,17 @@ Nodo:
 ----------------------------------------
 - indiceOss:int
 
+NodoChiusura:
+- nodo:Nodo
+- label:Label
+
+
 Tratte:
 - id:string --> id Transizione
 - nodoPartenza:Nodo
 - nodoArrivo:Nodo
+- label:label
 
 Label
 - id:string
-- type:string
+- value:string

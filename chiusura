@@ -1,0 +1,162 @@
+def CHIUSURA_SILENZIOSA(spazioOss, nodo):
+	listaNodi = spazioOss.listaNodi
+	listaTratte = spazioOss.listaTratte
+	
+	if nodo exist in listaNodi:
+		nodoInitChiusura = nodo
+	else:
+		return ERROR
+	
+	
+	listaNodiChiusura = []
+	listaTratteChiusura = []
+	listaTratteUscenti = []
+	
+	listaNodiChiusura.add(nodoInitChiusura)
+	
+	tailNodi = []
+	tailNodi.add(listaNodi[0])
+	
+	id = 0
+	while tailNodi is not empty:
+		nodoCurr = tailNodi[0]
+		
+		foreach FA in nodo.listaFA:
+			foreach tratta in listaTratte where nodoPartenza == nodoCurr:
+				if tratta.labelOss == None:
+					nodoToAdd = tratta.nodoArrivo
+					listaTratteChiusura.add(<nodoCurr, tratta, nodoToAdd>)
+					
+					if nodoToAdd is not in listaNodiChiusura:
+						listaNodiChiusura.add(nodoToAdd)
+						tailNodi.push(nodoToAdd)
+						
+				else:
+					listaTratteUscenti.add(<nodoCurr, tratta, tratta.nodoArrivo>)
+							
+		
+		tailNodi.pop()
+	
+	Chiusura chiusura = new Chiusura(nodoInitChiusura, listaNodiChiusura, listaTratteChiusura)
+	return spazio
+	#TODO nella struttura aggiungere status listaNodi per dire se è finale #TODO
+	
+	chiusura = EspressioniRegolari(chiusura)
+	
+	return chiusura
+
+def EspressioniRegolari(Chiusura):
+	if exist(Chiusura.listaTratte.NodoArrivo == Chiusura.nodoIniziale):
+		nodoPlaceHolder = Nodo<NULL, NULL>
+		Chiusura.listaNodi.add(newNodo)
+		Chiusura.listaTratte.add(Tratta<nodoPlaceHolder,NULL,Chiusura.nodoIniziale)
+		
+		Chiusura.nodoIniziale = nodoPlaceHolder
+	
+	nodoFinale = Nodo<NULL, NULL>
+	
+	foreach nodo in Chiusura.listaNodi where isFinal==True:
+		Chiusura.listaTratte.add(Tratta<nodo,"",nodoFinale)
+		
+	listaTratte = [(,)]
+	listaNodi = copy(Chiusura.listaNodi)
+	foreach tratta in Chiusura.listaTratte:
+		listaTratte.add((NULL, tratta))
+	
+	while len(listaTratte) > 1:
+		if esiste una sequenza .... di tratta, k>2 dove ogni nodo n_i, i ...., non ha altre tratta entranti o uscenti and t[0] is NULL:
+			if  n_final != nodoFinal and t_final[1].nodoArrivo.isFinal == False
+				listaTratte.add(NULL, <n, concat(r[], ''), n_final>)
+				listaTratte.remove(all(tratte in sequenza))
+			else:
+				listaTratte.add((t_final[1].nodoPartenza, <n, concat(r[], ''), n_final>)
+				listaTratte.remove(all(tratte in sequenza))
+		elif esiste una sequenza .... di tratta, k>2 dove ogni nodo n_i, i ...., non ha altre tratta entranti o uscenti and t_final[0] is not NULL
+			listaTratte.add(t_final[0], <n, concat(r[], ''), n_final>)
+			listaTratte.remove(all(tratte in sequenza))
+		elif esiste un insieme di tratta parallele uscenti dalla stesso nodo n e dirette allo stesso  nodo n_final and t[0] is NULL:
+			listaTratte.add(NULL, <n, concat(r[], '|'), n_final>)
+			listaTratte.remove(all(tratte in sequenza))
+		elif esiste insieme transizioni stesso pedice n_p con nodoPartenza == n and nodoArrivo == n_final
+			listaTratte.add(n_p, <n, concat(r[], '|'), n_final>)
+			listaTratte.remove(all(tratte in sequenza))
+		else:
+			n_int = random(listaNodi, n.isFinal == False, n != Chiusura.nodoIniziale)
+			for all tratta t1 where tratta.nodoArrivo = n_int and tratta.nodoPartenza != n_int
+				for all tratta t2 where tratta.nodoPartenza = n_int and tratta.nodoArrivo as n_2 != n_int
+					if n_2 is nodoFinal and (n_int is Final or n_int is tratta.nodoPartenza in listaTratteUscenti)
+						if exist tratta(<n_int, r, n_int>) t3:
+							listaTratteChiusura.add(n_int, <t1.nodoPartenza, concat(t1.labelRil, t3.labelRil, '*'), t2.nodoArrivo>)
+						else
+							listaTratteChiusura.add(n_int, <t1.nodoPartenza, t1.labelRil, t2.nodoArrivo>)
+					elif exist tratta(<n_int, r, n_int>) t3:
+						listaTratte.add(<t1.nodoPartenza, concat(t1.labelRil, t3.labelRil, '*', t2.labelRil), t2.nodoArrivo>)
+					else
+						listaTratte.add(<t1.nodoPartenza, concat(t1.labelRil, t2.labelRil), t2.nodoArrivo>)
+			
+			for all tratta in listaTratteChiusura with n_int is nodoPartenza and !nodoArrivo
+				if exist tratta(<n_int, r, n_int>) t3:
+					listaTratteChiusura.add(n_int, <t1.nodoPartenza, concat(t1.labelRil, t3.labelRil, '*', t2.labelRil), t2.nodoArrivo>)
+				else
+					listaTratteChiusura.add(n_int, <t1.nodoPartenza, concat(t1.labelRil, t2.labelRil), t2.nodoArrivo>)
+			
+			
+			listaNodi.remove(n_int)
+			listaTratte.remove(tratte with tratte.nodoArrivo = n_int or tratte.nodoPartenza = n_int)
+	
+	uscita = {}
+	for all tratta in listaTratteChiusura:
+		uscita.add(tratta.labelRil)
+	
+	return uscita
+	
+
+def SPAZIO_CHIUSURE(spazioOss):
+	#cicla su spazioOSS --> gen lista SPAZIO_CHIUSURE
+	listaChiusura = []
+	
+	chiusuraIniziale = CHIUSURA_SILENZIOSA(spazioOSS, spazioOss.nodoIniziale)
+	
+	tailChiusura[].add(chiusuraIniziale)
+	
+	while tailChiusura is not empty:
+		chiusura = tailChiusura[0]
+		for trattaOUT in chisura.listaTratteUscenti
+			if rattaOUT.nodoArrivo is not nodoIniziale in listaChiusura: 
+				chiusura_temp = CHIUSURA_SILENZIOSA(spazioOSS, trattaOUT.nodoArrivo)
+				listaChiusura.add(chiusura_temp)
+				tailChiusura.add(chiusura_temp)
+		tailChiusura.pop()
+			
+	
+
+def Diagnosticatore(listaChiusura)
+	listaChiusuraDiagnosticata = [()]
+	
+	for chiusura in listaChiusura:
+		delta = ''
+		for nodo is Final in chiusura.listaNodi:
+			delta += nodo.label
+			
+		listaChiusura.add((delta, chiusura))
+		
+		for trattaOUT in chiusura.listaTratteUscenti:
+			trattaOUT.labelRil = trattaOut.nodoPartenza.label
+	
+	return listaChiusuraDiagnosticata
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

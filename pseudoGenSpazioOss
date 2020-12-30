@@ -95,13 +95,13 @@ def cambioStato(transizione, nodo, toIncrement):
 	
 	
 def checkTransOss(transizione, indice, listaOss):
-	if transazioni.etichetta is in listaOss: 
-		if transazini.etichetta != listaOss[indice]
+	if transazioni.labelOss.value is in listaOss: 
+		if transazini.labelOss.value != listaOss[indice]
 			return (False, False)
 		else:
 			return (True, True)
 	else:
-		if transazioni.etichetta.type == 'OSS':
+		if transazioni.labelOss ! None:
 			return (False, False)
 		else:
 			return (True, False)

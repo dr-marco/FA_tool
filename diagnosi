@@ -1,0 +1,40 @@
+def EspressioniRegolari(SpazioOss):
+	
+	if exist(SpazioOss.listaTratte.NodoArrivo == SpazioOss.nodoIniziale):
+		nodoPlaceHolder = Nodo<NULL, NULL>
+		SpazioOss.listaNodi.add(newNodo)
+		SpazioOss.listaTratte.add(Tratta<nodoPlaceHolder,NULL,SpazioOss.nodoIniziale)
+		
+		SpazioOss.nodoIniziale = nodoPlaceHolder
+	
+	nodoFinale = Nodo<NULL, NULL>
+	
+	foreach nodo in SpazioOss.listaNodi where isFinal==True:
+		SpazioOss.listaTratte.add(Tratta<nodo,NULL,nodoFinale)
+		
+	listaTratte = copy(SpazioOss.listaTratte)
+	listaNodi = copy(SpazioOss.listaNodi)
+	
+	while len(listaTratte) > 1:
+		if esiste una sequenza .... di tratta, k>2 dove ogni nodo n_i, i ...., non ha altre tratta entranti o uscenti:
+			listaTratte.add(<n, concat(r[], ''), n_final>)
+			listaTratte.remove(all(tratte in sequenza))
+		elif esiste un insieme di tratta parallele uscenti dalla stesso nodo n e dirette allo stesso  nodo n_final:
+			listaTratte.add(<n, concat(r[], '|'), n_final>)
+			listaTratte.remove(all(tratte in sequenza))
+		else:
+			n_int = random(listaNodi, n.isFinal == False, n != SpazioOss.nodoIniziale)
+			for all tratta t1 where tratta.nodoArrivo = n_int and tratta.nodoPartenza != n_int
+				for all tratta t2 where tratta.nodoPartenza = n_int and tratta.nodoArrivo != n_int
+					if exist tratta(<n_int, r, n_int>) t3:
+						listaTratte.add(<t1.nodoPartenza, concat(t1.labelRil, t3.labelRil, '*', t2.labelRil), t2.nodoArrivo>)
+					else
+						listaTratte.add(<t1.nodoPartenza, concat(t1.labelRil, t2.labelRil), t2.nodoArrivo>)
+						#qua stiamo concatenando transizione.label ma in realtà TRATTE vorrebbe un oggetto transizione, dunque nel codice dovremmo o creare un nuovo oggetto per le tratte nelle espressioniregolari, oppure semplicemente cambiamo TRATTE e mettiamo che memorizza solamente un valore "label" di facciata, che di solito corrisponde all'id transizione ma non per forza, come in questo caso.
+				
+			listaNodi.remove(n_int)
+			listaTratte.remove(tratte with tratte.nodoArrivo = n_int or tratte.nodoPartenza = n_int)
+	
+	return listaTratte[0].labelRil
+	# Nel nostro 
+	
