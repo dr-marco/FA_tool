@@ -30,19 +30,19 @@ class Transitions:
 		self.label_oss = label_oss
 		self.label_rel = label_rel
 			
-def EventFunction:
+class EventFunction:
 	def __init__(self, event, link):
 		self.id = uuid.uuid1()
 		
 		self.event = event
 		self.link = link
 		
-def Event:
+class Event:
 	def __init__(self, alias = ''):
 		self.id = uuid.uuid1()
 		self.alias = alias
 		
-def Link:
+class Link:
 	def __init__(self, alias = '', start_FA, finish_FA, value = ''):
 		self.id = uuid.uuid1()
 		self.alias = alias
@@ -51,7 +51,7 @@ def Link:
 		self.finish_FA = finish_FA
 		self.value = value
 		
-def Net:
+class Net:
 	def __init__(self, alias = '', list_FA, list_link):
 		self.id = uuid.uuid1()
 		self.alias = alias
@@ -59,7 +59,7 @@ def Net:
 		self.list_FA = list_FA
 		self.list_link = list_link
 		
-def Standard_Space:
+class Standard_Space:
 	def __init__(self, initial_node, list_nodes, list_routes):
 		self.id = uuid.uuid1()
 		
@@ -67,7 +67,7 @@ def Standard_Space:
 		self.list_nodes = list_nodes
 		self.list_routes = list_routes
 		
-def Node:
+class Node:
 	def __init__(self, alias = '', isFinal = False, list_status_link, list_status_FA, index_Oss = None):
 		self.id = uuid.uuid1()
 		self.alias = alias
@@ -77,7 +77,7 @@ def Node:
 		self.list_status_FA = list_status_FA
 		self.index_Oss = index_Oss
 		
-def Route:
+class Route:
 	def __init__(self, transition, start_node, finish_node):
 		self.id = uuid.uuid1()
 		
@@ -85,14 +85,14 @@ def Route:
 		self.start_node = start_node
 		self.finish_node = finish_node
 		
-def Closing_Node:
+class Closing_Node:
 	def __init__(self, node, label):
 		self.id = uuid.uuid1()
 
 		self.node = node
 		self.label = label
 
-def Closing:
+class Closing:
 	def __init__(self, initial_node, list_nodes, list_routes, list_output_routes):
 		self.id = uuid.uuid1()
 		
