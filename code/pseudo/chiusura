@@ -1,0 +1,180 @@
+def CLOSING_SPACE(osservable_space):
+	# INIZIALIZE VARIABLE
+	create list_closing as empty list
+	create tail_closing as empty list
+	
+	create initialize_closing as SILENCE_CLOSING(osservable_space, osservable_space.initialize_node)
+	add initialize_closing to list_closing
+	push  to tail_closing
+	
+	while tail_closing is not empty:
+		get tail_closing.firstElement as closing_current
+		
+		for output_route in closing_current.list_output_routes
+			if output_route.finish_node is not in list_closing as closing.initialize_node: 
+				create closing_temp as SILENCE_CLOSING(osservable_space, output_route.finish_node)
+				
+				add closing_temp to list_closing
+				push closing_temp to tail_closing
+		pop tail_closing
+		
+	return list_closing
+		
+def DIAGNOSTIC(list_closing)
+	# INIZIALIZE VARIABLE
+	create list_diagnosticated_closing as empty list
+	
+	for closing in list_closing:
+		create delta as empty string
+		for node in closing.list_closing_nodes where node.final is True:
+			update delta adding node.label
+			
+		for output_route in closing.list_output_routes
+			update output_route.label with start_node.label
+			
+		create diagnostic_closing as <delta, closing>
+		add diagnostic_closing to list_diagnosticated_closing
+	
+	return list_diagnosticated_closing
+			
+
+def SILENCE_CLOSING(osservable_space, node):
+	
+	# INIZIALIZE VARIABLE
+	create list_closing_nodes as empty list
+	create list_closing_routes as empty list
+	create list_output_routes as empty list
+	create tail_nodes as empty list
+	
+	if node not exist in list_space_nodes:
+		return ERROR
+	
+	create initial_node as copy of node	
+	add initial_node to list_closing_nodes 
+	add initial_node to tail_nodes
+
+	while tail_nodes is not empty:
+		get tail_nodes.firstElement as node_current
+		
+		foreach route in osservable_space.list_routes where route.start_node is node_current:
+				if route.label_osservation not exist:
+					get route.finish_node as node_to_add
+					add ruote to list_closing_routes 
+					
+					
+					if node_to_add is not in list_closing_nodes:
+						add node_to_add to list_closing_nodes
+						tail_nodes.push(node_to_add)
+						
+				else:
+					add route to list_output_routes
+		
+		tail_nodes.pop()
+	
+	create CLOSING as <initial_node, list_closing_nodes, list_closing_routes, list_output_routes>
+	
+	RegExpr(CLOSING)
+	#ADD edit label node
+	return CLOSING
+
+def EspressioniRegolari(Closing):
+	create listRoutes as copy of Closing.list_closing_routes
+	create listNodes as copy of Closing.list_closing_nodes
+	create list_output_routes as copy of Closing.list_output_routes
+	create initial_node as copy of Closing.initial_node
+
+
+	if initial_node is present in route in listRoutes as finish_node
+		create new_initial_node
+		set new_initial_node.isFinal as True
+		
+		create new_route as <new_initial_node, 'empty', initial_node>
+		
+		add new_initial_node to listNodes
+		add new_route to listRoutes
+		
+		update initial_node with new_initial_node
+	
+	create final_node
+	set final_node.isFinal as True
+	
+	foreach node in listde where isFinal is True:
+		create new_route as <node, 'empty', final_node>
+		add new_route to listRoutes
+		
+	while listNodes has more than 2 element or exist more routes in listRoutes with equal subscript:
+		if exist sequence [<n,r_1, n_1>, <n_1,r_2,n_2>,...,<n_(k-1), r_k, n'>] of routes in listRoutes where all node n_i have only the sequence routes :
+			if n' is not final_node and n_(k-1).isFinal is False
+				remove sequence routes in listRoutes
+				add new_route as <n, concat(r_i), n') to listRoutes
+			else:
+				remove sequence routes in listRoutes
+				add new_route as <n, concat(r_i), n') to listRoutes
+				update new_route.subscript with value n_(k-1)
+		elif exist sequence [<n,r_1, n_1>, <n_1,r_2,n_2>,...,<n_(k-1), r_k.subscript is n_p, n'>] of routes in listRoutes where all node n_i have only the sequence routes :
+			remove sequence routes in listRoutes
+			add new_route as <n, concat(r_i), n') to listRoutes
+			update new_route.subscript with value n_p
+		elif exist routes with same n as start_node and n' as finish_node:
+			remove sequence routes in listRoutes
+			add new_route as <n, concat(routes, '|'), n') to listRoutes
+		elif exist routes with same n as start_node and n' as finish_node with routes.subscript is n_p:
+			remove sequence routes in listRoutes
+			add new_route as <n, concat(routes, '|'), n') to listRoutes
+			update new_route.subscript with value n_p
+		else:
+			take n from listNodes with n is not initial_node and n is not the final_node
+			for all routes as <n', r', n> where finish_node is n:
+				for all routes as <n, r'', n'> where start_node is n:
+					if n'' is final_node and (n is Final or n exist in list_output_routes as start_node)
+						if exist route as <n,r,n> where star_node and finish_node are n:
+							add new_route as <n', r'(r*), n''> to listRoutes
+							update new_route.subscript with value n
+						else
+							add new_route as <n', r', n''> to listRoutes
+							update new_route.subscript with value n
+					elif exist route as <n,r,n> where star_node and finish_node are n:
+						add new_route as <n', r'(r*)r'', n''> to listRoutes
+					else
+						add new_route as <n', r'r'', n''> to listRoutes
+			
+				for all routes as <n, r'' with subscript is n_p, n''>:
+					if exist route as <n,r,n> where star_node and finish_node are n:
+						add new_route as <n', r'(r*)r'', n''> to listRoutes
+						update new_route.subscript with value n
+					else
+						add new_route as <n', r'r'', n''> to listRoutes
+						update new_route.subscript with value n
+			
+			
+			remove n from listNodes
+			remove routes from listRoutes where n is start_node or finish_node
+	
+			
+	create exit as empty set
+	for all routes in listRoutes:
+		union routes.label to exit
+	
+	return uscita
+	#NON MODIFCA ANCORA LA LABEL
+
+
+	
+
+
+			
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

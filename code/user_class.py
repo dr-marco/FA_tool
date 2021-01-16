@@ -18,7 +18,7 @@ class State:
 		self.isFinal = isFinal
 
 class Transition:
-	def __init__(self, start_state, finish_state, input_event_func = None, output_events_func = [], label_oss = '', label_rel = '', alias = ''):
+	def __init__(self, start_state, finish_state, input_event_func = None, output_events_func = [], label_oss = '\u03b5', label_rel = '\u03b5', alias = ''):
 		self.alias = alias
 
 		self.start_state = start_state
@@ -50,28 +50,30 @@ class Net:
 		self.list_FA = list_FA
 		self.list_link = list_link
 
-class Standard_Space:
+class Behavior_Space:
 	def __init__(self, initial_node, list_nodes, list_routes):
 		self.initial_node = initial_node
 		self.list_nodes = list_nodes
 		self.list_routes = list_routes
 
 class Node:
-	def __init__(self, list_states_FA, list_values_link, alias = '', id = 0, final = False, index_Oss = 0):
+	def __init__(self, list_states_FA, list_values_link, alias = '', id = 0, final = False, index_oss = 0):
 		self.alias = ':'.join(list_states_FA) + '|' + ':'.join(list_values_link)
 		self.id  = id
 
 		self.final = final
 		self.list_states_FA = list_states_FA
 		self.list_values_link = list_values_link
-		self.index_Oss = index_Oss
+		self.index_oss = index_oss
 
 class Route:
-	def __init__(self, transition, start_node, finish_node, label = ''):
-		self.transition = transition
+	def __init__(self, start_node, finish_node, alias = '', label_oss = '\u03b5', label_rel = '\u03b5'):
+		self.alias = alias
+
 		self.start_node = start_node
 		self.finish_node = finish_node
-		self.label = label #TODO nel caso la togliamo
+		self.label_oss = label_oss #TODO nel caso la togliamo
+		self.label_rel = label_rel #TODO nel caso la togliamo
 
 class Closure_Node:
 	def __init__(self, node, label):
