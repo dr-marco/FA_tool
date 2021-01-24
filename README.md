@@ -1,4 +1,3 @@
 # FA_tool
 TODO list:
--scrivere lo pseudocodice di un algoritmo che produca lo spazio comportamentale di una rete finita di FA comportamentali data
--realizzare una applicazione software che incarni tale algoritmo
+-24-01-21: Miglioramento - sostituire le liste con i set per garantire l'unicità degli elementi e migliorare la complessità temporale
