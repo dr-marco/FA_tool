@@ -74,15 +74,47 @@ class Route:
 		self.finish_node = finish_node
 		self.label_oss = label_oss #TODO nel caso la togliamo
 		self.label_rel = label_rel #TODO nel caso la togliamo
+		
+		#per regex
+		self.set_label_rel = {label_rel}
+		self.rif_node = None
+
+class Route_Diagnostic(Route):
+	def __init__(self, parent):
+		super().__init__(parent.start_node, parent.finish_node, parent.alias, parent.label_oss, parent.label_rel)
+		self.start_state = None
+		self.finish_state = None
 
 class Closure_Node:
-	def __init__(self, node, label):
+	def __init__(self, node, label = ""):
 		self.node = node
 		self.label = label
 
 class Closure:
-	def __init__(self, initial_node, list_nodes, list_routes, list_output_routes):
+	def __init__(self, initial_node, list_nodes, list_routes, list_output_routes, id = 0):
+		self.id = id
+		
 		self.initial_node = initial_node
 		self.list_nodes = list_nodes
 		self.list_routes = list_routes
 		self.list_output_routes = list_output_routes
+		
+		self.delta = ''
+		self.list_diagnostic_output_route = []
+
+class Closure_Space:
+	def __init__(self, list_closures, list_routes):
+		self.list_closures = list_closures
+		self.list_routes = list_routes
+
+class State_Diagnostic:
+	def __init__(self, alias, list_routes = [], delta = '', id = 0):
+		self.id = id
+		self.alias = alias
+		self.delta = delta
+		self.list_routes = list_routes
+
+class Diagnosticator_Space:
+	def __init__(self, initial_state, list_states):
+		self.list_states = list_states
+		self.initial_state = initial_state
