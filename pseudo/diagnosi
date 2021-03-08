@@ -18,7 +18,7 @@ def EspressioneRegolare(OssSpace):
 	set final_node.isFinal as True
 	
 	create count_acept as count(node in  listNodes where isFinal is True)
-	if count_acept > 2 or (count_acept is 1 and exist route in listRoutes as start_node is node in listNodes where isFinal is True and start_node is not finish_node:
+	if count_acept > 1 or (count_acept is 1 and exist route in listRoutes as start_node is node in listNodes where isFinal is True and start_node is not finish_node:
 		foreach node in  listNodes where isFinal is True:
 			create new_route as <node, 'empty', final_node>
 			add new_route to listRoutes
