@@ -68,9 +68,14 @@ from operator import attrgetter
 from itertools import groupby
 
 def reg_expr(oss_space):
+
     list_routes = oss_space.list_routes
     list_nodes = oss_space.list_nodes
     initial_node = oss_space.initial_node
+
+    if len(list_nodes) == 0:
+        print("No nodes")
+        return ''
 
     list_nodes.remove(initial_node)
 

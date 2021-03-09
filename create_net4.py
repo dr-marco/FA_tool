@@ -12,14 +12,14 @@ t2a = Transition(state20, state21, alias = 't2a')
 t2b = Transition(state21, state20, label_rel = 'r', alias = 't2b')
 t2c = Transition(state20, state20, label_rel = 'f', alias = 't2c')
 
-t1a = Transition(state10, state11, label_oss = 'o1', alias = 't3a')
-t1b = Transition(state11, state12, alias = 't3b')
-t1c = Transition(state12, state10, alias = 't3c')
-t1d = Transition(state10, state12, label_oss = 'o2', alias = 't3c')
+t1a = Transition(state10, state11, label_oss = 'o1', alias = 't1a')
+t1b = Transition(state11, state12, alias = 't1b')
+t1c = Transition(state12, state10, alias = 't1c')
+t1d = Transition(state10, state12, label_oss = 'o2', alias = 't1d')
 
 
 list_state_C2 = [state20, state21]
-list_transition_C2 = [t2a, t2b]
+list_transition_C2 = [t2a, t2b, t2c]
 
 C2 = FA(list_state_C2, list_transition_C2, initial_state = state20, actual_state = state20, alias = 'C2')
 

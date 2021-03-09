@@ -25,25 +25,28 @@ def generate_behavior_space(net):
 
     list_space_nodes.append(initial_node)
     tail_nodes.append(initial_node)
-
+    #id = 1
     while tail_nodes:
         node_temp = tail_nodes[0]
-
+        #print("node in uso", node_temp.id, "alias", node_temp.alias)
         FA_index = 0
 
         for state_alias in node_temp.list_states_FA:
             FA = net.list_FA[FA_index]
             for transition in FA.list_trans:
+                print(transition.alias)
                 if transition.start_state.alias == state_alias:
                     node_to_add = fn.change_state(transition, FA_index, state_alias, net.list_link, node_temp)
                     if node_to_add is not None:
-
                         if not any(node_to_add := node for node in list_space_nodes if node.alias == node_to_add.alias):
+                            #node_to_add.id = id
+                            #id = id +1
+                            #print("\t nodo in aggiunta", node_to_add.id)
                             list_space_nodes.append(node_to_add)
                             tail_nodes.append(node_to_add)
                             node_to_add.final = all(value == '' for value in node_to_add.list_values_link)
-
                         route_to_add = Route(node_temp, node_to_add, alias = transition.alias, label_oss = transition.label_oss, label_rel = transition.label_rel)
+                        #print("\t ROUTE: aggiunta", route_to_add.finish_node.id, "alias", route_to_add.finish_node.alias, route_to_add.alias)
                         list_routes.append(route_to_add)
 
             FA_index += 1
@@ -58,7 +61,6 @@ def generate_behavior_space(net):
         list_space_nodes.remove(node)
 
     for route in list_routes:
-
         if route.start_node not in list_space_nodes or route.finish_node not in list_space_nodes:
             list_routes.remove(route)
 
@@ -98,7 +100,6 @@ def generate_behavior_space_from_osservation(net, osservation):
 
     while tail_nodes:
         node_temp = tail_nodes[0]
-
         FA_index = 0
 
         for state_alias in node_temp.list_states_FA:
@@ -140,7 +141,7 @@ def generate_behavior_space_from_osservation(net, osservation):
     for node in list_space_nodes:
         print(node.id, node.alias, node.index_oss, node.final)
     for route in list_routes:
-        print("ROUTE: <" + str(route.start_node.id) + ":" + route.alias + ":" + str(route.finish_node.id)+ ">")
+        print("ROUTE: <" + str(route.start_node.id) + ":" + route.alias + ":" + str(route.finish_node.id)+ ">", route.label_oss, route.label_rel)
 
     return Behavior_Space(initial_node, list_space_nodes, list_routes)
 
@@ -304,10 +305,10 @@ def main():
     print("Generazione spazio comportamentale da osservazione")
     #oss_space = generate_behavior_space_from_osservation(net, ["act", "sby", "nop"])
     #oss_space = generate_behavior_space_from_osservation(net, ["o3", "o2"])
-    #oss_space = generate_behavior_space_from_osservation(net, ["o1"])
+    oss_space = generate_behavior_space_from_osservation(net, ["o2", "o1"])
+
+    diagnosis_space(oss_space)
     
-    print("diagnosi")
-    #diagnosis_space(oss_space)
     #closure_space, diagnosticator_space = generator_closures_space(behavior_space)
     #fn.linear_diagnostic(diagnosticator_space, ["o3", "o2","o3", "o2"])
     #fn.linear_diagnostic(diagnosticator_space, ["o3", "o2","o3", "o2"])
