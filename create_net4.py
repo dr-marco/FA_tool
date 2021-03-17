@@ -50,3 +50,10 @@ net = Net([C1, C2], [L1, L2])
 
 with open("net4.pickle", "wb") as f:
     pickle.dump(net, f)
+
+import jsonpickle
+import json
+frozen = jsonpickle.encode(net)
+
+with open("frozen.json", "w") as f:
+    print(frozen, file=f)

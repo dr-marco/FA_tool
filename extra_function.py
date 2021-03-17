@@ -1,6 +1,38 @@
 from user_class import *
 import copy
 import random
+from memory_profiler import profile
+
+import argparse
+def parse_arguments():
+    
+    parser = argparse.ArgumentParser()
+    subparser = parser.add_mutually_exclusive_group(required=True)
+    subparser.add_argument('-net', metavar='net.json', help='net file')
+    subparser.add_argument('-b', metavar='behavior_space.json', help='behavior space')
+    subparser.add_argument('-o', metavar='oss_space.json', help='behavior space from osservation')
+    subparser.add_argument('-cs', metavar='closing_space.json', help='silence closing space')
+    subparser.add_argument('-dgn', metavar='diagnosticator.json', help='diagnosticator')
+	
+    subparser2 = parser.add_mutually_exclusive_group(required=False)
+
+    subparser2.add_argument("-all", help='run all program', action='store_const', const='all', dest='step')
+    subparser2.add_argument('-gb', help='generate behavior space', action='store_const', const='gb', dest='step')
+    
+    subparser2.add_argument("-go", help='generate behavior space from osservation', action='store_const', const='gbo', dest='step')
+    
+    subparser2.add_argument("-d", help='diagnosis behavior space', action='store_const', const='d', dest='step')
+    subparser2.add_argument("-gcs", help='generate closing space', action='store_const', const='gcs', dest='step')
+    
+    #subparser2.add_argument("-dc", help='diagnosis closing space', action='store_const', const='dc', dest='step')
+    subparser2.add_argument("-gd", help='generate diagnosticator', action='store_const', const='gd', dest='step')
+
+    subparser2.add_argument("-do", help='linear_diagnostic', action='store_const', const='do', dest='step')
+    
+    parser.add_argument("-ol2", help='osservation list for diagnosticator', required=False, nargs='*')
+    parser.add_argument("-ol", help='osservation list', required=False, nargs='*')
+    
+    return parser.parse_args()
 
 def BFS(list_routes, list_space_nodes, final_node):
     grey = []
@@ -96,7 +128,7 @@ def reg_expr(oss_space):
         list_route_node_input = []
         list_route_node_output = []
         node = random.choice(list_nodes)
-        print(node.id)
+        #print(node.id)
         
         for route in list_routes:
             if route.start_node == node and route.finish_node == node:
