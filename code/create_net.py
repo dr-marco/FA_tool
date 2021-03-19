@@ -51,3 +51,10 @@ net = Net([C2, C3], [L2, L3])
 
 with open("net.pickle", "wb") as f:
     pickle.dump(net, f)
+import jsonpickle
+net = jsonpickle.encode(net)
+
+with open("net.json", "w") as f:
+    f.write(net)
+
+print(type(net))

@@ -1,0 +1,144 @@
+NET with 2 FAs and 2 LINKS
+	FA: C2 with 2 states and 2 trans
+		 STATES: 20 21 
+		 TRANSITION: t2a t2b 
+	FA: C3 with 2 states and 3 trans
+		 STATES: 30 31 
+		 TRANSITION: t3a t3b t3c 
+Generation Behavior Space
+	13 Nodes
+	 ID: 0 ALIAS: 20:30|:
+	 ID: 1 ALIAS: 20:31|e2:
+	 ID: 2 ALIAS: 21:31|:e3
+	 ID: 3 ALIAS: 21:30|:
+	 ID: 4 ALIAS: 21:31|:
+	 ID: 5 ALIAS: 20:30|:e3
+	 ID: 6 ALIAS: 21:31|e2:
+	 ID: 7 ALIAS: 20:31|:e3
+	 ID: 8 ALIAS: 20:31|e2:e3
+	 ID: 9 ALIAS: 20:31|:
+	 ID: 10 ALIAS: 20:30|e2:
+	 ID: 11 ALIAS: 21:30|:e3
+	 ID: 12 ALIAS: 21:31|e2:e3
+	16 Routes
+	ROUTE: <0:t3a:1> with oss: o3 and rel:ε
+	ROUTE: <1:t2a:2> with oss: o2 and rel:ε
+	ROUTE: <2:t3b:3> with oss: ε and rel:ε
+	ROUTE: <2:t3c:4> with oss: ε and rel:f
+	ROUTE: <3:t2b:5> with oss: ε and rel:r
+	ROUTE: <3:t3a:6> with oss: o3 and rel:ε
+	ROUTE: <4:t2b:7> with oss: ε and rel:r
+	ROUTE: <5:t3a:8> with oss: o3 and rel:ε
+	ROUTE: <6:t2b:8> with oss: ε and rel:r
+	ROUTE: <7:t3b:0> with oss: ε and rel:ε
+	ROUTE: <7:t3c:9> with oss: ε and rel:f
+	ROUTE: <8:t3b:10> with oss: ε and rel:ε
+	ROUTE: <8:t3c:1> with oss: ε and rel:f
+	ROUTE: <10:t2a:11> with oss: o2 and rel:ε
+	ROUTE: <11:t3a:12> with oss: o3 and rel:ε
+	ROUTE: <12:t3c:6> with oss: ε and rel:f
+Generation Behavior Space from osservation
+	8 Nodes
+	 ID: 0 ALIAS: 20:30|: and OSS.INDEX: 0
+	 ID: 1 ALIAS: 20:31|e2: and OSS.INDEX: 1
+	 ID: 2 ALIAS: 21:31|:e3 and OSS.INDEX: 2
+	 ID: 3 ALIAS: 21:30|: and OSS.INDEX: 2
+	 ID: 4 ALIAS: 21:31|: and OSS.INDEX: 2
+	 ID: 5 ALIAS: 20:31|:e3 and OSS.INDEX: 2
+	 ID: 6 ALIAS: 20:30|: and OSS.INDEX: 2
+	 ID: 7 ALIAS: 20:31|: and OSS.INDEX: 2
+	7 Routes
+	ROUTE: <0:t3a:1> with oss: o3 and rel:ε
+	ROUTE: <1:t2a:2> with oss: o2 and rel:ε
+	ROUTE: <2:t3b:3> with oss: ε and rel:ε
+	ROUTE: <2:t3c:4> with oss: ε and rel:f
+	ROUTE: <4:t2b:5> with oss: ε and rel:r
+	ROUTE: <5:t3b:6> with oss: ε and rel:ε
+	ROUTE: <5:t3c:7> with oss: ε and rel:f
+Generation diagnosis in osservation space
+	f|frf|fr|ε
+Generation Closing Space
+	 x0
+		 ID: 0
+		 ROUTEOUT: <0:ε:1> with rel: ε
+		 DELTA: ε
+	 x1
+		 ID: 1
+		 ROUTEOUT: <1:ε:2> with rel: ε
+	 x2
+		 ID: 2
+		 ID: 3
+		 ID: 4
+		 ID: 5
+		 ID: 7
+		 ID: 0
+		 ID: 9
+		 ROUTE: <2:t3b:3> with rel: ε
+		 ROUTE: <2:t3c:4> with rel: f
+		 ROUTE: <3:t2b:5> with rel: r
+		 ROUTE: <4:t2b:7> with rel: r
+		 ROUTE: <7:t3b:0> with rel: ε
+		 ROUTE: <7:t3c:9> with rel: f
+		 ROUTEOUT: <3:ε:6> with rel: ε
+		 ROUTEOUT: <5:r:8> with rel: r
+		 ROUTEOUT: <0:fr:1> with rel: fr
+		 DELTA: ε|fr|frf|f
+	 x3
+		 ID: 6
+		 ID: 8
+		 ID: 10
+		 ID: 1
+		 ROUTE: <6:t2b:8> with rel: r
+		 ROUTE: <8:t3b:10> with rel: ε
+		 ROUTE: <8:t3c:1> with rel: f
+		 ROUTEOUT: <1:rf:2> with rel: rf
+		 ROUTEOUT: <10:r:11> with rel: r
+	 x4
+		 ID: 8
+		 ID: 10
+		 ID: 1
+		 ROUTE: <8:t3b:10> with rel: ε
+		 ROUTE: <8:t3c:1> with rel: f
+		 ROUTEOUT: <10:ε:11> with rel: ε
+		 ROUTEOUT: <1:f:2> with rel: f
+	 x5
+		 ID: 11
+		 ROUTEOUT: <11:ε:12> with rel: ε
+	 x6
+		 ID: 12
+		 ID: 6
+		 ID: 8
+		 ID: 10
+		 ID: 1
+		 ROUTE: <12:t3c:6> with rel: f
+		 ROUTE: <6:t2b:8> with rel: r
+		 ROUTE: <8:t3b:10> with rel: ε
+		 ROUTE: <8:t3c:1> with rel: f
+		 ROUTEOUT: <1:frf:2> with rel: frf
+		 ROUTEOUT: <10:fr:11> with rel: fr
+Generation Diagnosticator
+	 STATE: 0
+		 ROUTE OUT: <0:ε:1> with rel: fr
+		 DELTA: ε
+	 STATE: 1
+		 ROUTE OUT: <1:ε:2> with rel: fr
+	 STATE: 2
+		 ROUTE OUT: <3:ε:6> with rel: fr
+		 ROUTE OUT: <5:r:8> with rel: fr
+		 ROUTE OUT: <0:fr:1> with rel: fr
+		 DELTA: ε|fr|frf|f
+	 STATE: 3
+		 ROUTE OUT: <10:r:11> with rel: fr
+		 ROUTE OUT: <1:rf:2> with rel: fr
+	 STATE: 4
+		 ROUTE OUT: <10:ε:11> with rel: fr
+		 ROUTE OUT: <1:f:2> with rel: fr
+	 STATE: 5
+		 ROUTE OUT: <11:ε:12> with rel: fr
+	 STATE: 6
+		 ROUTE OUT: <10:fr:11> with rel: fr
+		 ROUTE OUT: <1:frf:2> with rel: fr
+Generation linear diagnostic
+	frf|fr|frfrf|frfr
+	rff|rffr|rf|rffrf
+--- 0.008736133575439453 seconds ---

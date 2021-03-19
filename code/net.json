@@ -1,0 +1,115 @@
+{
+  "list_fa": [
+    {
+      "FA_alias": "C2",
+      "list_states": [
+        {
+          "state_alias": "20"
+        },
+        {
+          "state_alias": "21"
+        }
+      ],
+      "list_trans": [
+        {
+          "alias": "t2a",
+          "state_in": "20",
+          "state_out": "21",
+          "label_oss": "o2",
+          "label_rel": "",
+          "input_event": {
+            "event": "e2",
+            "link": "L2"
+          },
+          "output_event": [
+            {
+              "event": "e3",
+              "link": "L3"
+            }
+          ]
+        },
+        {
+          "alias": "t2b",
+          "state_in": "21",
+          "state_out": "20",
+          "label_oss": "",
+          "label_rel": "r",
+          "input_event": {},
+          "output_event": [
+            {
+              "event": "e3",
+              "link": "L3"
+            }
+          ]
+        }
+      ],
+      "initial_state": "20",
+      "actual_state": "20"
+    },
+    {
+      "FA_alias": "C3",
+      "list_states": [
+        {
+          "state_alias": "30"
+        },
+        {
+          "state_alias": "31"
+        }
+      ],
+      "list_trans": [
+        {
+          "alias": "t3a",
+          "state_in": "30",
+          "state_out": "31",
+          "label_oss": "o3",
+          "label_rel": "",
+          "input_event": {},
+          "output_event": [
+            {
+              "event": "e2",
+              "link": "L2"
+            }
+          ]
+        },
+        {
+          "alias": "t3b",
+          "state_in": "31",
+          "state_out": "30",
+          "label_oss": "",
+          "label_rel": "",
+          "input_event": {
+            "event": "e3",
+            "link": "L3"
+          },
+          "output_event": []
+        },
+        {
+          "alias": "t3c",
+          "state_in": "31",
+          "state_out": "31",
+          "label_oss": "",
+          "label_rel": "f",
+          "input_event": {
+            "event": "e3",
+            "link": "L3"
+          },
+          "output_event": []
+        }
+      ],
+      "initial_state": "30",
+      "actual_state": "30"
+    }
+  ],
+  "list_link": [
+    {
+      "alias": "L2",
+      "start_FA": "C3",
+      "finish_FA": "C2"
+    },
+    {
+      "alias": "L3",
+      "start_FA": "C2",
+      "finish_FA": "C3"
+    }
+  ]
+}
