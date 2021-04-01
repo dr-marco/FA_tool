@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage[ruled,vlined, linesnumbered]{algorithm2e}
+\newcommand{\rememberlines}{\xdef\rememberedlines{\number\value{AlgoLine}}}
+\newcommand{\resumenumbering}{\setcounter{AlgoLine}{\rememberedlines}}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+% tabelle
+\usepackage{tabularx}
+\definecolor{mygray}{gray}{0.9}
+\DontPrintSemicolon
+\usepackage{hyperref}
+
+
+\title{Progetto Algoritmi e Strutture Dati}
+\author{De Ramundo Marco, Parolin Yanez Diego}
+\date{Aprile 2021}
+
+\begin{document}
+
+\maketitle
+
+\input{introduzione}
+\input{strumenti}
+\input{algoritmi}
+\input{istanze}
+\input{prestazioni}
+
+\end{document}

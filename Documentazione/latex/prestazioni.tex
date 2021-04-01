@@ -1,0 +1,115 @@
+\section{Analisi delle Prestazioni}
+\subsection{Complessità Temporale}
+L'analisi temporale degli algoritmi e di tutte le funzioni presenti è stata eseguita manualmente, inoltre per gli esempi che verranno illustrati nella sezione seguente, verrà proposto il calcolo del tempo effettivo di esecuzione.
+Nella lista sottostante verranno quindi inseriti sia i calcoli di complessità intermedi risultanti dai vari cicli che compongono le funzioni (per lo meno i cicli più importanti) e successivamente l'effettiva complessità risultante.
+
+L'analisi è stata eseguita sull'effettivo codice che in ogni caso rispecchia lo pseudocodice commentato nel terzo capitolo.
+
+Un file, denominato \textbf{time complex analysis} è presente nel GitHub del progetto e contiene tutte le informazioni qui contenute.
+
+Definizione dei simboli per le variabili utilizzate per esprimere la complessità temporale:
+\begin{itemize}
+    \item list\_FA: \textbf{F}
+    \item list\_link: \textbf{L $\rightarrow$ F$^2$}
+    \item list\_nodes: \textbf{V} 
+    \item list\_routes: \textbf{E  $\rightarrow$ V$^2$}
+    \item list\_states: \textbf{S}
+    \item list\_transitions: \textbf{T}
+\end{itemize}
+
+Lista delle funzioni principali dell'algoritmo:
+\begin{itemize}
+    \item \textbf{generate\_behavior\_space}
+    \begin{itemize}
+        \item O(V)*(O(F)*O(T) *(change\_state + O(V))+O(V))
+        \item complessità risultante: O($V^2*F*T$)
+    \end{itemize}
+    \item \textbf{generate\_behavior\_space\_from\_osservation} 
+    \begin{itemize}
+        \item O(V)*(O(F)*O(T)*(change\_state + O(V))+O(V))
+        \item complessità risultante: O($V^2*F*T$)
+    \end{itemize}
+    \item \textbf{diagnosis\_space}  $\rightarrow$ O($V^2$)
+    \item \textbf{generator\_silence\_closure} $\rightarrow$ O(V)*(O(E)*O(V)+O(V))
+    \begin{itemize}
+        \item complessità risultante: O($V^4$)
+    \end{itemize}
+    \item \textbf{generator\_closures\_space\_and\_diagnosticator} $\rightarrow$ la somma di 
+    \begin{itemize}
+        \item O(V)*O(E)*(O(V)+O(generate silence closure))
+        \item O(V)*(O(V)+O(E)+fn.reg\_expr\_closing+O(E)*O(E))
+        \item complessità risultante: O($V^7$)
+    \end{itemize}
+    \item \textbf{generator\_closures\_space} $\rightarrow$ la somma di
+        \begin{itemize}
+        \item O(V)*O(E)*(O(V)+O(generate silence closure))
+        \item O(V)*(O(V)+O(E)+reg\_expr\_closing+O(E)*O(E))
+        \item complessità risultante: O($V^7$)
+    \end{itemize}
+    \item \textbf{generator\_diagnosticator} $\rightarrow$ la somma di
+        \begin{itemize}
+        \item O(V)*O(E)*O(V)
+        \item O(V)
+        \item complessità risultante: O($V^4$)
+    \end{itemize}
+\end{itemize}
+Funzioni di supporto all'algoritmo:
+\begin{itemize}
+    \item \textbf{BFS} $\rightarrow$  O(V+E)
+    \item \textbf{change\_state} $\rightarrow$ O(T+$F^2$)
+    \item \textbf{reg\_expr\_closing} $\rightarrow$ O($V^4$)
+\end{itemize}
+
+La progettazione del programma ha avuto come obiettivo primario quello di avere una complessità temporale polinomiale, evitando di avere così complessità esponenziali o superiori al polinomiale. Tale obiettivo è stato rispettato ottenendo un programma con complessità polinomiale rispetto al numero di nodi presente nello spazio comportamentale. 
+
+Da notare come le complessità sono state parametrizzate rispetto al numero di nodi e non rispetto al numero di automi o stati o transizioni degli automi. Questo poiché anche con un numero simile di stati è possibile avere un numero di nodi dello spazio comportamentale molto differente e in particolar modo al numero dei nodi del successivo spazio delle chiusure, dove le analisi hanno mostrato avere in quest'ultimo un numero di nodi più elevato. Vedasi ad esempio l'istanza creata da noi mostrata nel capitolo precedente. Avendo solo due automi con un totale di soli cinque stati si è arrivati ad avere uno spazio comportamentale comunque molto grande e soprattutto ad avere una dimensione dello spazio delle chiusure pressoché paragonabile all'istanza di benchmark il quale ha un numero di stati e \texttt{FA} superiori alla nostra istanza. 
+
+Perciò essendo le successive funzioni operanti sullo spazio comportamentale, e quindi dipendenti dalla loro dimensione, e non sulla rete di \texttt{FA} è dal nostro punto di vista preferibile giudicare le prestazioni rispetto al numero di nodi.
+\subsection{Benchmark}
+\subsubsection{Complessità Temporale}
+Nelle seguenti tabelle mostriamo le misurazioni temporali effettuate con il nostro programma. Ogni valore è misurato in millisecondi se non viene specificato altrimenti. 
+I valori risultanti sono una media di numerose esecuzioni per ottenere un valore di benchmark più affidabile e veritiero (all'incirca una decina di esecuzioni per istanza).
+
+Di seguito è mostrata la tabella che mostra il calcolo sperimentale della complessità temporale delle istanze mostrate nella sezione precedente; 
+\textbf{I1} corrisponde all'istanza "Istanza Base", \textbf{I2} a "Istanze di Test", \textbf{Icustom} a "Istanza creata da noi" e infine \textbf{Ibenchmark} a "Istanza per Benchmark". 
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ l | l l l l}
+        & I1 & I2 & Icustom & \textbf{Ibenchmark}\\
+        \hline
+        \emph{spazio comp.}  & 0,21 & 0,17 & 0,77 & 1,56\\
+        \emph{spazio osservabile} & 0,16 & 0,16 & 0,82 & 1,13 \\
+        \emph{Diagnosi} & 0,23 & 0,24 & 2,36 & 3,75\\
+        \emph{spazio delle chiusure} & 1,40 &  1,37 & 13,33 & 15,49\\
+        \emph{diagnosticatore} & 0,04 & 0,07 & 0,40 & 0,51 \\
+        \emph{Diagnosi lineare} & 0,08 & 0,05 & 1,00 & 0,30 \\
+        \hline
+        \rowcolor{mygray} \textbf{TOTALE (s)} & $2,3 \times 10^{-3}$ & $2,1\times 10^{-3}$ & $1,9\times 10^{-2}$ & $2,3\times 10^{-2}$ \\
+        
+    \end{tabular}
+    \caption{Tabella relativa alle calcolo della complessità temporale sperimentale delle istanze presentate}
+    \label{tab:tabella-diagnosis}
+\end{table}
+Come mostrato nella tabella le istanze semplici, usate da noi per i test, hanno un tempo di esecuzione molto simile tra loro, dato dal fatto che con la loro semplicità il numero di nodi del loro spazio comportamentale non è elevato. Stesso discorso può essere applicato per le due istanze usate come effettivo benchmark, ovvero l'istanza di benchmark e la nostra istanza. Queste due istanze prevedono un numero di nodi di gran lunga superiore e per forza di cose questo implica un aumento nei tempi di esecuzione confrontato ai tempi delle istanze di test. Tra loro le due istanze hanno comunque valori paragonabili.
+
+In nessun caso si è arrivato ad avere tempi delle varie funzioni tra varie istanze discrepanti, ad esempio non risulta che in una qualche istanza una funzione particolare impiegasse un quantitativo di tempo nettamente superiore rispetto a quello di una istanza paragonabile. I tempi misurati risultano quindi in linea ed è stato rispettato il comportamento atteso.
+
+Tra le funzioni notiamo inoltre come la funzione che richiede un maggior quantitativo di tempo risulta \textbf{generator\_closures\_space} che in effetti è la funzione con la peggior complessità temporale ma allo stesso tempo è la funzione che necessità di un maggior numero di operazioni di calcolo per ottenere il risultato desiderato e opera con strutture nettamente più grandi.
+\subsubsection{Complessità Spaziale}
+Per quanto riguarda invece la complessità spaziale, abbiamo optato per calcolarla, sperimentalmente, attraverso una libreria di python, memory\_profiler, che restituisce in output la memoria occupata dallo script.
+
+Il nostro script occupa di base \textbf{43.95 MB}, importando le librerie e caricando la definizione della rete.
+Lanciando le varie istanze si ottengono i seguenti consumi di memoria:
+\begin{itemize}
+    \item Istanza di Base $\rightarrow$ \textbf{+0.07 MB}
+    \item Istanza di Test $\rightarrow$ \textbf{+0.05 MB}
+    \item Istanza creata da noi $\rightarrow$ \textbf{+0.57 MB}
+    \item Istanza di Benchmark $\rightarrow$\textbf{ +0.69 MB}
+\end{itemize}
+
+Così come la complessità temporale, anche la complessità spaziale è dipendente dal numero di nodi che compongono lo spazio comportamentale e lo spazio delle chiusure di ciascuna istanza. Ovviamente qualora una istanza avesse delle dimensioni superiori rispetto a un'altra è abbastanza normale che la quantità di memoria necessaria sia maggiore. 
+
+Una possibile misura per migliorare la complessità spaziale sarebbe stata quella di progettare una specifica che vada a salvare i dati in memoria in modo da risparmiare molto più spazio. Tale approccio non è stato intrapreso perché così facendo si sarebbe dovuto implementare delle operazioni custom che andavano a interpretare correttamente le nostre strutture ed eseguire operazioni in modo da mantenere la coerenza con i risultati attesi. Questo innanzitutto avrebbe inutilmente complicato il progetto, avrebbe aumentato la possibilità di incagliarsi in errori e poteva non garantire un miglioramento nella complessità temporale ma al contrario ottenere un peggioramento. Affidandoci a un linguaggio di programmazione e a delle librerie consolidate, a strutture per la memorizzazione standard si è così ottenuto stabilità nel codice e una maggior semplicità a gestire in modo efficace la memoria a disposizione, sfruttando appunto le caratteristiche del linguaggio python e dei file json.
+
+Per questo motivo si è preferito concentrarsi più sulla complessità temporale che non su quella spaziale. Ciononostante i risultati ottenuti sono comunque soddisfacenti con l'attuale implementazione del programma.

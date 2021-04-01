@@ -1,0 +1,62 @@
+\section{Strumenti utilizzati}
+\subsection{Comando di esempio}
+Per eseguire il programma è sufficiente lanciare da terminale il comando
+
+\texttildelow
+\texttt{python project\_function.py -h}
+
+Questo comando permette di stampare a video un semplice help che aiuta chi deve eseguire il programma a digitare correttamente il comando.
+
+\texttildelow
+\texttt{python project\_function.py -net net.json -ol o3 o2 -ol2 o3 o2 o3 o2}
+
+Questo è un esempio di possibile comando per esecuzione del programma con input una rete e dei vettori di osservazione. Altre modalità previste dal programma verranno mostrate nel prossimo paragrafo dove verranno descritti i parametri disponibili utili per eseguire le operazioni desiderate. 
+\subsection{Librerie e Parametri}
+La scelta del linguaggio di programmazione è ricaduta su Python, per via della sua versabilità, adattabilità e per la presenza di una vasta disponibilità di librerie, tra le quali noi abbiamo utilizzato:
+\begin{enumerate}
+    \item \textbf{copy} per duplicare gli oggetti senza mantenere alcun riferimento all’oggetto d'origine (deep copy)
+    \item \textbf{time} per monitorare tempistiche di esecuzione
+    \item \textbf{memory\_profile} per monitorare memoria fisica occupata dalle varie funzioni
+    \item \textbf{json} per salvare/caricare gli oggetti di classe create dall’utente in formato json
+    \item \textbf{jsonpickle} per salvare/caricare i file di tipo json
+    \item \textbf{argparse} per aggiungere opzioni da linea di comando
+\end{enumerate}
+Come accennato, tramite la libreria argparse, è stato possibile aggiungere delle opzioni per il funzionamento del programma, quando questo viene lanciato tramite linea di commando.
+Richiede di specificare il file di input
+\begin{enumerate}
+    \item \textbf{-net} + \textit{pathtofile.json}: se si vogliono applicare tutti gli step dell'algoritmo
+    \item \textbf{-b} + \textit{pathtofile.json}: se si vuole generare una spazio osservabile dato uno spazio comportamentale oppure lo spazio delle chiusure silenziose
+    \item \textbf{-o} + \textit{pathtofile.json}: se si vuole generare la diagnosi relativa a uno spazio comportamentale riferito a una osservazione
+    \item \textbf{-cs} + \textit{pathtofile.json}: se si vuole generare il diagnosticatore partendo dallo spazio delle chiusure silenziose
+    \item -\textbf{dgn} + \textit{pathtofile.json}: se si vuole generare la diagnosi lineare dato il diagnosticatore
+\end{enumerate}
+Oltre a una serie di opzioni relative agli steps da eseguire, che se omesse (in presenza di -net) equivale a lanciare l'algoritmo con tutti gli steps:
+\begin{enumerate}
+    \item \textbf{-all} (se è presente -net) per lanciare il programmo comprendendo tutti i passaggi dell'algoritmo
+    \item \textbf{-gb} (se presente -net) per generare lo spazio comportamentale
+    \item \textbf{-go} (se presente -b) per generare lo spazio osservabile
+    \item \textbf{-d} (se presente -o) per generare la diagnosi lineare
+    \item \textbf{-gcs} (se presente -b) per generare lo spazio delle chiusure
+    \item \textbf{-gd }(se presente -cs) per generare il diagnosticatore
+    \item \textbf{-do} (se presente -d) per generare la diagnosi lineare
+\end{enumerate}
+Infine ci sono altre opzioni indipendenti dalla selezione precedente
+\begin{enumerate}
+    \item \textbf{-ol} + \textit{'serie di label'} (se presente -net, -all, -o) per specificare il vettore osservazione per generare lo spazio osservabile
+    \item \textbf{-ol2 }+ \textit{'serie di label'} (se presente -net, -all, -do) per specificare il vettore osservazione per generare la diagnosi lineare
+    \item \textbf{-bk} per lanciare un benchmark
+\end{enumerate}
+    
+Dunque in input richiede dei file .json, o le specifiche della rete di base, oppure lo stato della rete nelle varie fasi intermedie, questi stati vengono generati e salvati in un file .json in output durante l'esecuzione dei vari steps del programma, dunque non è necessario scriverli manualmente (anche se risulta possibile).
+
+Oltre ai file degli stati intermedi, in output il programma può salvare altri tre file:
+\begin{enumerate}
+    \item \textit{summary.txt} contenente il riassunto di tutti gli step eseguiti
+    \item \textit{diagnosis.txt} contennte il risutlato della diagnosi
+    \item \textit{lineardiagnosis.txt} contennete il risultato della diagnosi lineare
+\end{enumerate}
+
+Per rappresentare e salvare la rete abbiamo deciso di sfruttare il formato json, nel quale abbiamo inventato una nostra struttura, come vedremo successivamente, dove sono espresse in maniera formale tutte le caratteristiche della rete.
+Per salvare gli stati intermedi è stato preferito salvare gli oggetti in formato json e non pickle (serializzando) per una questione di sicurezza, velocità e facilità nella lettura.
+Il benchmark non stampa nessun risultato intermedio o il summary della reta, presenta unicamente in output il tempo, in s, di esecuzione del programma.
+

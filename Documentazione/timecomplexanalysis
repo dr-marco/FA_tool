@@ -1,0 +1,66 @@
+#reference of symbols for variables
+list_FA: F
+list_link: L -> F^2
+list_nodes: V 
+list_routes: E -> V^2
+list_states: S
+list_transitions: T
+----------------------------------------
+#time complexity of generate behavior space
+-sums of :
+O(F)*O(1)
+O(L)*O(1)
+O(V)*(O(F)*O(T)*(fn.change_state + O(V))+O(V))
+O(V)
+O(V)*fn.BFS
+O(V)*O(V)
+O(E)*O(E)
+O(V)
+
+--> O(V)*(O(F)*O(T)*(fn.change_state + O(V))+O(V))
+----------------------------------------
+#time complexity of generate behavior space from osservation
+--> same as generate behavior space
+----------------------------------------
+#time complexity of diagnosis space
+-sums of :
+O(V^2)
+fn.reg_expr
+----------------------------------------
+#time complexity of generator silence closure
+O(V)*(O(E)*O(V)+O(V))
+----------------------------------------
+#time complexity of generator closures space
+O(generate silence closure)
+O(V)*O(E)*(O(V)+O(generate silence closure))
+O(V)*(O(V)+O(E)+fn.reg_expr_closing+O(E)*O(E))
+----------------------------------------
+#time complexity of generator diagnosticator
+O(V)
+O(V)*O(E)*O(V)
+----------------------------------------
+#time complexity of generator closures space and diagnosticator
+O(generate silence closure)
+O(V)*O(E)*(O(V)+O(generate silence closure))
+O(V)*(O(V)+O(E)+fn.reg_expr_closing+O(V^2)+O(E)*O(E))
+----------------------------------------
+#time complexity of python methods
+list.append() -> O(1)
+list.remove() -> O(n)
+set.remove() -> O(1)
+any -> O(n)
+all -> O(n)
+copy.deepcopy() -> O(n^2) at worst case
+----------------------------------------
+#time complexity of custom methods
+fn.change_state() -> O(T)+O(F)+O(L)
+fn.BFS() -> O(V+E)
+----------------------------------------
+#time complexity of reg_expr_closing
+fn.reg_expr_closing() -> O(V^4)
+O(V)
+O(E)
+O(V)
+O(E)*O(E)*O(E)
+O(V)*(O(E)+O(V)*O(E)+O(V)*(O(V)*O(V))
+O(V)*(O(E)+O(E)O(E)*O(E)
