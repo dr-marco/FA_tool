@@ -536,7 +536,7 @@ def steps(net=None, behavior_space=None, oss_space = None, closing_space = None,
 	text_to_file += "--- %s seconds ---" % (time.time() - start_time)
 	#print("--- %s seconds ---" % (time.time() - start_time))
 
-	#print(text_to_file)
+	print(text_to_file)
 
 def main():
 	global text_to_file
@@ -546,9 +546,9 @@ def main():
 			raise Exception("[Error] -net is required")
 			return 1
 		else:
-			#doc = fn.json_to_obj(args.net)
-			with open('../pickle/net3.pickle', 'rb') as f:
-				doc = pickle.load(f)
+			doc = fn.json_to_obj(args.net)
+			'''with open('../pickle/net3.pickle', 'rb') as f:
+				doc = pickle.load(f)'''
 			#steps(net=doc, gen_bs=True, gen_bs_from_o=True, diagnosis=True, gen_closing=True, gen_diagnosticator=True, linear_diagnostic=True, oss_list=args.ol, oss_list2=args.ol2)
 			benchmark(doc, oss_list=args.ol, oss_list2=args.ol2)
 			return 0
