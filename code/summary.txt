@@ -1,144 +1,993 @@
-NET with 2 FAs and 2 LINKS
-	FA: C2 with 2 states and 2 trans
-		 STATES: 20 21 
-		 TRANSITION: t2a t2b 
-	FA: C3 with 2 states and 3 trans
-		 STATES: 30 31 
-		 TRANSITION: t3a t3b t3c 
 Generation Behavior Space
-	13 Nodes
-	 ID: 0 ALIAS: 20:30|:
-	 ID: 1 ALIAS: 20:31|e2:
-	 ID: 2 ALIAS: 21:31|:e3
-	 ID: 3 ALIAS: 21:30|:
-	 ID: 4 ALIAS: 21:31|:
-	 ID: 5 ALIAS: 20:30|:e3
-	 ID: 6 ALIAS: 21:31|e2:
-	 ID: 7 ALIAS: 20:31|:e3
-	 ID: 8 ALIAS: 20:31|e2:e3
-	 ID: 9 ALIAS: 20:31|:
-	 ID: 10 ALIAS: 20:30|e2:
-	 ID: 11 ALIAS: 21:30|:e3
-	 ID: 12 ALIAS: 21:31|e2:e3
-	16 Routes
-	ROUTE: <0:t3a:1> with oss: o3 and rel:ε
-	ROUTE: <1:t2a:2> with oss: o2 and rel:ε
-	ROUTE: <2:t3b:3> with oss: ε and rel:ε
-	ROUTE: <2:t3c:4> with oss: ε and rel:f
-	ROUTE: <3:t2b:5> with oss: ε and rel:r
-	ROUTE: <3:t3a:6> with oss: o3 and rel:ε
-	ROUTE: <4:t2b:7> with oss: ε and rel:r
-	ROUTE: <5:t3a:8> with oss: o3 and rel:ε
-	ROUTE: <6:t2b:8> with oss: ε and rel:r
-	ROUTE: <7:t3b:0> with oss: ε and rel:ε
-	ROUTE: <7:t3c:9> with oss: ε and rel:f
-	ROUTE: <8:t3b:10> with oss: ε and rel:ε
-	ROUTE: <8:t3c:1> with oss: ε and rel:f
-	ROUTE: <10:t2a:11> with oss: o2 and rel:ε
-	ROUTE: <11:t3a:12> with oss: o3 and rel:ε
-	ROUTE: <12:t3c:6> with oss: ε and rel:f
+	23 Nodes
+	 ID: 0 ALIAS: 10:20|:
+	 ID: 1 ALIAS: 11:20|:
+	 ID: 2 ALIAS: 10:21|:
+	 ID: 3 ALIAS: 12:20|e2:
+	 ID: 4 ALIAS: 11:21|:
+	 ID: 5 ALIAS: 10:20|:e1
+	 ID: 6 ALIAS: 10:20|e2:
+	 ID: 7 ALIAS: 12:21|e2:
+	 ID: 8 ALIAS: 12:20|:
+	 ID: 9 ALIAS: 11:20|:e1
+	 ID: 10 ALIAS: 10:21|:e1
+	 ID: 11 ALIAS: 11:20|e2:
+	 ID: 12 ALIAS: 10:21|e2:
+	 ID: 13 ALIAS: 12:20|e2:e1
+	 ID: 14 ALIAS: 12:21|:
+	 ID: 15 ALIAS: 11:21|:e1
+	 ID: 16 ALIAS: 11:21|e2:
+	 ID: 17 ALIAS: 10:20|e2:e1
+	 ID: 18 ALIAS: 12:21|e2:e1
+	 ID: 19 ALIAS: 12:20|:e1
+	 ID: 20 ALIAS: 11:20|e2:e1
+	 ID: 21 ALIAS: 10:21|e2:e1
+	 ID: 22 ALIAS: 12:21|:e1
+	46 Routes
+	ROUTE: <0:t1a:1> with oss: o1 and rel:ε
+	ROUTE: <0:t2a:2> with oss: ε and rel:ε
+	ROUTE: <1:t1b:3> with oss: ε and rel:ε
+	ROUTE: <1:t2a:4> with oss: ε and rel:ε
+	ROUTE: <2:t1a:4> with oss: o1 and rel:ε
+	ROUTE: <2:t2b:5> with oss: ε and rel:r
+	ROUTE: <3:t1c:6> with oss: ε and rel:ε
+	ROUTE: <3:t2a:7> with oss: ε and rel:ε
+	ROUTE: <3:t2c:8> with oss: ε and rel:f
+	ROUTE: <4:t1b:7> with oss: ε and rel:ε
+	ROUTE: <4:t2b:9> with oss: ε and rel:r
+	ROUTE: <5:t1a:9> with oss: o1 and rel:ε
+	ROUTE: <5:t1d:8> with oss: o2 and rel:ε
+	ROUTE: <5:t2a:10> with oss: ε and rel:ε
+	ROUTE: <6:t1a:11> with oss: o1 and rel:ε
+	ROUTE: <6:t2a:12> with oss: ε and rel:ε
+	ROUTE: <6:t2c:0> with oss: ε and rel:f
+	ROUTE: <7:t1c:12> with oss: ε and rel:ε
+	ROUTE: <7:t2b:13> with oss: ε and rel:r
+	ROUTE: <8:t1c:0> with oss: ε and rel:ε
+	ROUTE: <8:t2a:14> with oss: ε and rel:ε
+	ROUTE: <9:t1b:13> with oss: ε and rel:ε
+	ROUTE: <9:t2a:15> with oss: ε and rel:ε
+	ROUTE: <10:t1a:15> with oss: o1 and rel:ε
+	ROUTE: <10:t1d:14> with oss: o2 and rel:ε
+	ROUTE: <11:t2a:16> with oss: ε and rel:ε
+	ROUTE: <11:t2c:1> with oss: ε and rel:f
+	ROUTE: <12:t1a:16> with oss: o1 and rel:ε
+	ROUTE: <12:t2b:17> with oss: ε and rel:r
+	ROUTE: <13:t1c:17> with oss: ε and rel:ε
+	ROUTE: <13:t2a:18> with oss: ε and rel:ε
+	ROUTE: <13:t2c:19> with oss: ε and rel:f
+	ROUTE: <14:t1c:2> with oss: ε and rel:ε
+	ROUTE: <14:t2b:19> with oss: ε and rel:r
+	ROUTE: <15:t1b:18> with oss: ε and rel:ε
+	ROUTE: <16:t2b:20> with oss: ε and rel:r
+	ROUTE: <17:t1a:20> with oss: o1 and rel:ε
+	ROUTE: <17:t1d:3> with oss: o2 and rel:ε
+	ROUTE: <17:t2a:21> with oss: ε and rel:ε
+	ROUTE: <17:t2c:5> with oss: ε and rel:f
+	ROUTE: <18:t1c:21> with oss: ε and rel:ε
+	ROUTE: <19:t1c:5> with oss: ε and rel:ε
+	ROUTE: <19:t2a:22> with oss: ε and rel:ε
+	ROUTE: <20:t2c:9> with oss: ε and rel:f
+	ROUTE: <21:t1d:7> with oss: o2 and rel:ε
+	ROUTE: <22:t1c:10> with oss: ε and rel:ε
 Generation Behavior Space from osservation
-	8 Nodes
-	 ID: 0 ALIAS: 20:30|: and OSS.INDEX: 0
-	 ID: 1 ALIAS: 20:31|e2: and OSS.INDEX: 1
-	 ID: 2 ALIAS: 21:31|:e3 and OSS.INDEX: 2
-	 ID: 3 ALIAS: 21:30|: and OSS.INDEX: 2
-	 ID: 4 ALIAS: 21:31|: and OSS.INDEX: 2
-	 ID: 5 ALIAS: 20:31|:e3 and OSS.INDEX: 2
-	 ID: 6 ALIAS: 20:30|: and OSS.INDEX: 2
-	 ID: 7 ALIAS: 20:31|: and OSS.INDEX: 2
-	7 Routes
-	ROUTE: <0:t3a:1> with oss: o3 and rel:ε
-	ROUTE: <1:t2a:2> with oss: o2 and rel:ε
-	ROUTE: <2:t3b:3> with oss: ε and rel:ε
-	ROUTE: <2:t3c:4> with oss: ε and rel:f
-	ROUTE: <4:t2b:5> with oss: ε and rel:r
-	ROUTE: <5:t3b:6> with oss: ε and rel:ε
-	ROUTE: <5:t3c:7> with oss: ε and rel:f
+	26 Nodes
+	 ID: 0 ALIAS: 10:20|: and OSS.INDEX: 0
+	 ID: 1 ALIAS: 11:20|: and OSS.INDEX: 1
+	 ID: 2 ALIAS: 10:21|: and OSS.INDEX: 0
+	 ID: 3 ALIAS: 12:20|e2: and OSS.INDEX: 1
+	 ID: 4 ALIAS: 11:21|: and OSS.INDEX: 1
+	 ID: 5 ALIAS: 10:20|:e1 and OSS.INDEX: 0
+	 ID: 6 ALIAS: 10:20|e2: and OSS.INDEX: 1
+	 ID: 7 ALIAS: 12:21|e2: and OSS.INDEX: 1
+	 ID: 8 ALIAS: 12:20|: and OSS.INDEX: 1
+	 ID: 9 ALIAS: 11:20|:e1 and OSS.INDEX: 1
+	 ID: 10 ALIAS: 10:21|e2: and OSS.INDEX: 1
+	 ID: 11 ALIAS: 10:20|: and OSS.INDEX: 1
+	 ID: 12 ALIAS: 12:20|e2:e1 and OSS.INDEX: 1
+	 ID: 13 ALIAS: 12:21|: and OSS.INDEX: 1
+	 ID: 14 ALIAS: 10:20|e2:e1 and OSS.INDEX: 1
+	 ID: 15 ALIAS: 10:21|: and OSS.INDEX: 1
+	 ID: 16 ALIAS: 12:20|:e1 and OSS.INDEX: 1
+	 ID: 17 ALIAS: 12:20|e2: and OSS.INDEX: 2
+	 ID: 18 ALIAS: 10:20|:e1 and OSS.INDEX: 1
+	 ID: 19 ALIAS: 12:21|:e1 and OSS.INDEX: 1
+	 ID: 20 ALIAS: 10:20|e2: and OSS.INDEX: 2
+	 ID: 21 ALIAS: 12:20|: and OSS.INDEX: 2
+	 ID: 22 ALIAS: 10:21|:e1 and OSS.INDEX: 1
+	 ID: 23 ALIAS: 10:20|: and OSS.INDEX: 2
+	 ID: 24 ALIAS: 12:21|: and OSS.INDEX: 2
+	 ID: 25 ALIAS: 10:21|: and OSS.INDEX: 2
+	48 Routes
+	ROUTE: <0:t1a:1> with oss: o1 and rel:ε
+	ROUTE: <0:t2a:2> with oss: ε and rel:ε
+	ROUTE: <1:t1b:3> with oss: ε and rel:ε
+	ROUTE: <1:t2a:4> with oss: ε and rel:ε
+	ROUTE: <2:t1a:4> with oss: o1 and rel:ε
+	ROUTE: <2:t2b:5> with oss: ε and rel:r
+	ROUTE: <3:t1c:6> with oss: ε and rel:ε
+	ROUTE: <3:t2a:7> with oss: ε and rel:ε
+	ROUTE: <3:t2c:8> with oss: ε and rel:f
+	ROUTE: <4:t1b:7> with oss: ε and rel:ε
+	ROUTE: <4:t2b:9> with oss: ε and rel:r
+	ROUTE: <5:t1a:9> with oss: o1 and rel:ε
+	ROUTE: <6:t2a:10> with oss: ε and rel:ε
+	ROUTE: <6:t2c:11> with oss: ε and rel:f
+	ROUTE: <7:t1c:10> with oss: ε and rel:ε
+	ROUTE: <7:t2b:12> with oss: ε and rel:r
+	ROUTE: <8:t1c:11> with oss: ε and rel:ε
+	ROUTE: <8:t2a:13> with oss: ε and rel:ε
+	ROUTE: <9:t1b:12> with oss: ε and rel:ε
+	ROUTE: <0:t1a:0> with oss: o1 and rel:ε
+	ROUTE: <10:t2b:14> with oss: ε and rel:r
+	ROUTE: <11:t2a:15> with oss: ε and rel:ε
+	ROUTE: <12:t1c:14> with oss: ε and rel:ε
+	ROUTE: <12:t2c:16> with oss: ε and rel:f
+	ROUTE: <13:t1c:15> with oss: ε and rel:ε
+	ROUTE: <13:t2b:16> with oss: ε and rel:r
+	ROUTE: <14:t1d:17> with oss: o2 and rel:ε
+	ROUTE: <14:t2c:18> with oss: ε and rel:f
+	ROUTE: <15:t2b:18> with oss: ε and rel:r
+	ROUTE: <16:t1c:18> with oss: ε and rel:ε
+	ROUTE: <16:t2a:19> with oss: ε and rel:ε
+	ROUTE: <17:t1c:20> with oss: ε and rel:ε
+	ROUTE: <17:t2c:21> with oss: ε and rel:f
+	ROUTE: <18:t1d:21> with oss: o2 and rel:ε
+	ROUTE: <18:t2a:22> with oss: ε and rel:ε
+	ROUTE: <19:t1c:22> with oss: ε and rel:ε
+	ROUTE: <20:t2c:23> with oss: ε and rel:f
+	ROUTE: <0:t2b:0> with oss: ε and rel:r
+	ROUTE: <21:t1c:23> with oss: ε and rel:ε
+	ROUTE: <21:t2a:24> with oss: ε and rel:ε
+	ROUTE: <22:t1d:24> with oss: o2 and rel:ε
+	ROUTE: <23:t2a:25> with oss: ε and rel:ε
+	ROUTE: <0:t2a:0> with oss: ε and rel:ε
+	ROUTE: <24:t1c:25> with oss: ε and rel:ε
+	ROUTE: <0:t2a:0> with oss: ε and rel:ε
+	ROUTE: <25:t2b:0> with oss: ε and rel:r
+	ROUTE: <0:t1c:0> with oss: ε and rel:ε
+	ROUTE: <0:t2a:0> with oss: ε and rel:ε
 Generation diagnosis in osservation space
-	f|frf|fr|ε
+	rfr|rf|fr|ε|r|frr
 Generation Closing Space
 	 x0
 		 ID: 0
+		 ID: 2
+		 ID: 5
+		 ID: 10
+		 ROUTE: <0:t2a:2> with rel: ε
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <5:t2a:10> with rel: ε
 		 ROUTEOUT: <0:ε:1> with rel: ε
+		 ROUTEOUT: <2:ε:4> with rel: ε
+		 ROUTEOUT: <5:r:9> with rel: r
+		 ROUTEOUT: <5:r:8> with rel: r
+		 ROUTEOUT: <10:r:15> with rel: r
+		 ROUTEOUT: <10:r:14> with rel: r
 		 DELTA: ε
 	 x1
 		 ID: 1
-		 ROUTEOUT: <1:ε:2> with rel: ε
-	 x2
-		 ID: 2
 		 ID: 3
 		 ID: 4
-		 ID: 5
-		 ID: 7
-		 ID: 0
-		 ID: 9
-		 ROUTE: <2:t3b:3> with rel: ε
-		 ROUTE: <2:t3c:4> with rel: f
-		 ROUTE: <3:t2b:5> with rel: r
-		 ROUTE: <4:t2b:7> with rel: r
-		 ROUTE: <7:t3b:0> with rel: ε
-		 ROUTE: <7:t3c:9> with rel: f
-		 ROUTEOUT: <3:ε:6> with rel: ε
-		 ROUTEOUT: <5:r:8> with rel: r
-		 ROUTEOUT: <0:fr:1> with rel: fr
-		 DELTA: ε|fr|frf|f
-	 x3
 		 ID: 6
+		 ID: 7
 		 ID: 8
+		 ID: 9
+		 ID: 12
+		 ID: 0
+		 ID: 13
+		 ID: 14
+		 ID: 15
+		 ID: 17
+		 ID: 2
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
 		 ID: 10
-		 ID: 1
-		 ROUTE: <6:t2b:8> with rel: r
-		 ROUTE: <8:t3b:10> with rel: ε
-		 ROUTE: <8:t3c:1> with rel: f
-		 ROUTEOUT: <1:rf:2> with rel: rf
-		 ROUTEOUT: <10:r:11> with rel: r
+		 ROUTE: <1:t1b:3> with rel: ε
+		 ROUTE: <1:t2a:4> with rel: ε
+		 ROUTE: <3:t1c:6> with rel: ε
+		 ROUTE: <3:t2a:7> with rel: ε
+		 ROUTE: <3:t2c:8> with rel: f
+		 ROUTE: <4:t1b:7> with rel: ε
+		 ROUTE: <4:t2b:9> with rel: r
+		 ROUTE: <6:t2a:12> with rel: ε
+		 ROUTE: <6:t2c:0> with rel: f
+		 ROUTE: <7:t1c:12> with rel: ε
+		 ROUTE: <7:t2b:13> with rel: r
+		 ROUTE: <8:t1c:0> with rel: ε
+		 ROUTE: <8:t2a:14> with rel: ε
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <12:t2b:17> with rel: r
+		 ROUTE: <0:t2a:2> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <14:t1c:2> with rel: ε
+		 ROUTE: <14:t2b:19> with rel: r
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <17:r:20> with rel: r
+		 ROUTEOUT: <17:r:3> with rel: r
+		 ROUTEOUT: <0:f:1> with rel: f
+		 ROUTEOUT: <2:f:4> with rel: f
+		 ROUTEOUT: <6:ε:11> with rel: ε
+		 ROUTEOUT: <0:ff:1> with rel: ff
+		 ROUTEOUT: <2:ff:4> with rel: ff
+		 ROUTEOUT: <10:rf:15> with rel: rf
+		 ROUTEOUT: <10:rf:14> with rel: rf
+		 ROUTEOUT: <17:rr:20> with rel: rr
+		 ROUTEOUT: <17:rr:3> with rel: rr
+		 ROUTEOUT: <17:rrr:20> with rel: rrr
+		 ROUTEOUT: <17:rrr:3> with rel: rrr
+		 ROUTEOUT: <10:rfrf:15> with rel: rfrf
+		 ROUTEOUT: <10:rfrf:14> with rel: rfrf
+		 ROUTEOUT: <10:rfrfrf:15> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrf:14> with rel: rfrfrf
+		 ROUTEOUT: <21:r:7> with rel: r
+		 ROUTEOUT: <21:rr:7> with rel: rr
+		 ROUTEOUT: <21:rrr:7> with rel: rrr
+		 ROUTEOUT: <21:rrrr:7> with rel: rrrr
+		 ROUTEOUT: <21:rrrrr:7> with rel: rrrrr
+		 ROUTEOUT: <21:rrrrrr:7> with rel: rrrrrr
+		 ROUTEOUT: <21:rrrrrrr:7> with rel: rrrrrrr
+		 ROUTEOUT: <5:rf:9> with rel: rf
+		 ROUTEOUT: <5:rf:8> with rel: rf
+		 ROUTEOUT: <10:rfrfrfrf:15> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:14> with rel: rfrfrfrf
+		 ROUTEOUT: <5:rfrf:9> with rel: rfrf
+		 ROUTEOUT: <5:rfrf:8> with rel: rfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:15> with rel: rfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:14> with rel: rfrfrfrfrf
+		 ROUTEOUT: <5:rfrffr:9> with rel: rfrffr
+		 ROUTEOUT: <5:rfrffr:8> with rel: rfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffr:15> with rel: rfrfrfrfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffr:14> with rel: rfrfrfrfrffr
+		 ROUTEOUT: <5:rfrffrfr:9> with rel: rfrffrfr
+		 ROUTEOUT: <5:rfrffrfr:8> with rel: rfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfr:15> with rel: rfrfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfr:14> with rel: rfrfrfrfrffrfr
+		 ROUTEOUT: <5:rfrffrfrrf:9> with rel: rfrffrfrrf
+		 ROUTEOUT: <5:rfrffrfrrf:8> with rel: rfrffrfrrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrf:15> with rel: rfrfrfrfrffrfrrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrf:14> with rel: rfrfrfrfrffrfrrf
+		 ROUTEOUT: <5:rfrffrfrrfrf:9> with rel: rfrffrfrrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrf:8> with rel: rfrffrfrrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrf:15> with rel: rfrfrfrfrffrfrrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrf:14> with rel: rfrfrfrfrffrfrrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrf:9> with rel: rfrffrfrrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrf:8> with rel: rfrffrfrrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrf:15> with rel: rfrfrfrfrffrfrrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrf:14> with rel: rfrfrfrfrffrfrrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrf:9> with rel: rfrffrfrrfrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrf:8> with rel: rfrffrfrrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrf:15> with rel: rfrfrfrfrffrfrrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrf:14> with rel: rfrfrfrfrffrfrrfrfrfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:rrrr:20> with rel: rrrr
+		 ROUTEOUT: <17:rrrr:3> with rel: rrrr
+		 ROUTEOUT: <21:rrrrrrrr:7> with rel: rrrrrrrr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrf:9> with rel: rfrffrfrrfrfrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrf:8> with rel: rfrffrfrrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrf:15> with rel: rfrfrfrfrffrfrrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrf:14> with rel: rfrfrfrfrffrfrrfrfrfrfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:rrrrr:20> with rel: rrrrr
+		 ROUTEOUT: <17:rrrrr:3> with rel: rrrrr
+		 ROUTEOUT: <21:rrrrrrrrr:7> with rel: rrrrrrrrr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrf:9> with rel: rfrffrfrrfrfrfrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrf:8> with rel: rfrffrfrrfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrf:15> with rel: rfrfrfrfrffrfrrfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrf:14> with rel: rfrfrfrfrffrfrrfrfrfrfrfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:rrrrrr:20> with rel: rrrrrr
+		 ROUTEOUT: <17:rrrrrr:3> with rel: rrrrrr
+		 ROUTEOUT: <21:rrrrrrrrrr:7> with rel: rrrrrrrrrr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrf:9> with rel: rfrffrfrrfrfrfrfrfrfrf
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrf:8> with rel: rfrffrfrrfrfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrf:15> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrf:14> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrf
+		 ROUTEOUT: <2:fff:4> with rel: fff
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffr:15> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffr:14> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrffr:9> with rel: rfrffrfrrfrfrfrfrfrfrffr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrffr:8> with rel: rfrffrfrrfrfrfrfrfrfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfr:15> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfr:14> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffrfr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrffrfr:9> with rel: rfrffrfrrfrfrfrfrfrfrffrfr
+		 ROUTEOUT: <5:rfrffrfrrfrfrfrfrfrfrffrfr:8> with rel: rfrffrfrrfrfrfrfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr:15> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr:14> with rel: rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr
+		 DELTA: ε|f
+	 x2
+		 ID: 4
+		 ID: 7
+		 ID: 9
+		 ID: 12
+		 ID: 13
+		 ID: 15
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <4:t1b:7> with rel: ε
+		 ROUTE: <4:t2b:9> with rel: r
+		 ROUTE: <7:t1c:12> with rel: ε
+		 ROUTE: <7:t2b:13> with rel: r
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <12:t2b:17> with rel: r
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <5:rf:9> with rel: rf
+		 ROUTEOUT: <5:rf:8> with rel: rf
+		 ROUTEOUT: <5:rfrf:9> with rel: rfrf
+		 ROUTEOUT: <5:rfrf:8> with rel: rfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:r:20> with rel: r
+		 ROUTEOUT: <17:r:3> with rel: r
+		 ROUTEOUT: <5:rfrfrf:9> with rel: rfrfrf
+		 ROUTEOUT: <5:rfrfrf:8> with rel: rfrfrf
+		 ROUTEOUT: <17:rr:20> with rel: rr
+		 ROUTEOUT: <17:rr:3> with rel: rr
+		 ROUTEOUT: <5:rfrfrfrf:9> with rel: rfrfrfrf
+		 ROUTEOUT: <5:rfrfrfrf:8> with rel: rfrfrfrf
+		 ROUTEOUT: <17:rrr:20> with rel: rrr
+		 ROUTEOUT: <17:rrr:3> with rel: rrr
+		 ROUTEOUT: <5:rfrfrfrfrf:9> with rel: rfrfrfrfrf
+		 ROUTEOUT: <5:rfrfrfrfrf:8> with rel: rfrfrfrfrf
+		 ROUTEOUT: <10:rf:15> with rel: rf
+		 ROUTEOUT: <10:rf:14> with rel: rf
+		 ROUTEOUT: <10:rfrf:15> with rel: rfrf
+		 ROUTEOUT: <10:rfrf:14> with rel: rfrf
+		 ROUTEOUT: <10:rfrfrf:15> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrf:14> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:15> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:14> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:15> with rel: rfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:14> with rel: rfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrfrf:15> with rel: rfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrfrf:14> with rel: rfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrfrfrf:15> with rel: rfrfrfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrfrfrf:14> with rel: rfrfrfrfrfrfrf
+		 ROUTEOUT: <21:r:7> with rel: r
+		 ROUTEOUT: <21:rr:7> with rel: rr
+		 ROUTEOUT: <21:rrr:7> with rel: rrr
+		 ROUTEOUT: <21:rrrr:7> with rel: rrrr
+		 ROUTEOUT: <21:rrrrr:7> with rel: rrrrr
+		 DELTA: ε
+	 x3
+		 ID: 9
+		 ID: 13
+		 ID: 15
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <17:ε:20> with rel: ε
+		 ROUTEOUT: <17:ε:3> with rel: ε
+		 ROUTEOUT: <21:ε:7> with rel: ε
+		 ROUTEOUT: <21:ε:7> with rel: ε
+		 ROUTEOUT: <21:ε:7> with rel: ε
+		 ROUTEOUT: <10:f:15> with rel: f
+		 ROUTEOUT: <10:f:14> with rel: f
+		 ROUTEOUT: <5:f:9> with rel: f
+		 ROUTEOUT: <5:f:8> with rel: f
+		 ROUTEOUT: <10:ff:15> with rel: ff
+		 ROUTEOUT: <10:ff:14> with rel: ff
+		 ROUTEOUT: <5:ff:9> with rel: ff
+		 ROUTEOUT: <5:ff:8> with rel: ff
+		 ROUTEOUT: <10:fff:15> with rel: fff
+		 ROUTEOUT: <10:fff:14> with rel: fff
 	 x4
 		 ID: 8
+		 ID: 0
+		 ID: 14
+		 ID: 2
+		 ID: 19
+		 ID: 5
+		 ID: 22
 		 ID: 10
-		 ID: 1
-		 ROUTE: <8:t3b:10> with rel: ε
-		 ROUTE: <8:t3c:1> with rel: f
-		 ROUTEOUT: <10:ε:11> with rel: ε
-		 ROUTEOUT: <1:f:2> with rel: f
+		 ROUTE: <8:t1c:0> with rel: ε
+		 ROUTE: <8:t2a:14> with rel: ε
+		 ROUTE: <0:t2a:2> with rel: ε
+		 ROUTE: <14:t1c:2> with rel: ε
+		 ROUTE: <14:t2b:19> with rel: r
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <0:ε:1> with rel: ε
+		 ROUTEOUT: <2:ε:4> with rel: ε
+		 ROUTEOUT: <5:r:9> with rel: r
+		 ROUTEOUT: <5:r:8> with rel: r
+		 ROUTEOUT: <10:r:15> with rel: r
+		 ROUTEOUT: <10:r:14> with rel: r
+		 ROUTEOUT: <10:rr:15> with rel: rr
+		 ROUTEOUT: <10:rr:14> with rel: rr
+		 ROUTEOUT: <2:ε:4> with rel: ε
+		 ROUTEOUT: <5:rr:9> with rel: rr
+		 ROUTEOUT: <5:rr:8> with rel: rr
+		 ROUTEOUT: <10:rrr:15> with rel: rrr
+		 ROUTEOUT: <10:rrr:14> with rel: rrr
+		 ROUTEOUT: <5:rrr:9> with rel: rrr
+		 ROUTEOUT: <5:rrr:8> with rel: rrr
+		 ROUTEOUT: <10:rrrr:15> with rel: rrrr
+		 ROUTEOUT: <10:rrrr:14> with rel: rrrr
+		 DELTA: ε
 	 x5
-		 ID: 11
-		 ROUTEOUT: <11:ε:12> with rel: ε
+		 ID: 15
+		 ID: 18
+		 ID: 21
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTEOUT: <21:ε:7> with rel: ε
 	 x6
-		 ID: 12
-		 ID: 6
-		 ID: 8
+		 ID: 14
+		 ID: 2
+		 ID: 19
+		 ID: 5
+		 ID: 22
 		 ID: 10
+		 ROUTE: <14:t1c:2> with rel: ε
+		 ROUTE: <14:t2b:19> with rel: r
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <2:ε:4> with rel: ε
+		 ROUTEOUT: <5:r:9> with rel: r
+		 ROUTEOUT: <5:r:8> with rel: r
+		 ROUTEOUT: <5:rr:9> with rel: rr
+		 ROUTEOUT: <5:rr:8> with rel: rr
+		 ROUTEOUT: <10:r:15> with rel: r
+		 ROUTEOUT: <10:r:14> with rel: r
+		 ROUTEOUT: <10:rr:15> with rel: rr
+		 ROUTEOUT: <10:rr:14> with rel: rr
+		 ROUTEOUT: <10:rrr:15> with rel: rrr
+		 ROUTEOUT: <10:rrr:14> with rel: rrr
+		 DELTA: ε
+	 x7
+		 ID: 11
+		 ID: 16
 		 ID: 1
-		 ROUTE: <12:t3c:6> with rel: f
-		 ROUTE: <6:t2b:8> with rel: r
-		 ROUTE: <8:t3b:10> with rel: ε
-		 ROUTE: <8:t3c:1> with rel: f
-		 ROUTEOUT: <1:frf:2> with rel: frf
-		 ROUTEOUT: <10:fr:11> with rel: fr
+		 ID: 20
+		 ID: 3
+		 ID: 4
+		 ID: 9
+		 ID: 6
+		 ID: 7
+		 ID: 8
+		 ID: 13
+		 ID: 15
+		 ID: 12
+		 ID: 0
+		 ID: 14
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 2
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <11:t2a:16> with rel: ε
+		 ROUTE: <11:t2c:1> with rel: f
+		 ROUTE: <16:t2b:20> with rel: r
+		 ROUTE: <1:t1b:3> with rel: ε
+		 ROUTE: <1:t2a:4> with rel: ε
+		 ROUTE: <20:t2c:9> with rel: f
+		 ROUTE: <3:t1c:6> with rel: ε
+		 ROUTE: <3:t2a:7> with rel: ε
+		 ROUTE: <3:t2c:8> with rel: f
+		 ROUTE: <4:t1b:7> with rel: ε
+		 ROUTE: <4:t2b:9> with rel: r
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <6:t2a:12> with rel: ε
+		 ROUTE: <6:t2c:0> with rel: f
+		 ROUTE: <7:t1c:12> with rel: ε
+		 ROUTE: <7:t2b:13> with rel: r
+		 ROUTE: <8:t1c:0> with rel: ε
+		 ROUTE: <8:t2a:14> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <12:t2b:17> with rel: r
+		 ROUTE: <0:t2a:2> with rel: ε
+		 ROUTE: <14:t1c:2> with rel: ε
+		 ROUTE: <14:t2b:19> with rel: r
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <5:rff:9> with rel: rff
+		 ROUTEOUT: <5:rff:8> with rel: rff
+		 ROUTEOUT: <5:rfffrf:9> with rel: rfffrf
+		 ROUTEOUT: <5:rfffrf:8> with rel: rfffrf
+		 ROUTEOUT: <5:rfffrffrf:9> with rel: rfffrffrf
+		 ROUTEOUT: <5:rfffrffrf:8> with rel: rfffrffrf
+		 ROUTEOUT: <5:rfffrffrffrf:9> with rel: rfffrffrffrf
+		 ROUTEOUT: <5:rfffrffrffrf:8> with rel: rfffrffrffrf
+		 ROUTEOUT: <12:f:16> with rel: f
+		 ROUTEOUT: <12:ff:16> with rel: ff
+		 ROUTEOUT: <6:f:11> with rel: f
+		 ROUTEOUT: <0:ff:1> with rel: ff
+		 ROUTEOUT: <12:fff:16> with rel: fff
+		 ROUTEOUT: <21:rf:7> with rel: rf
+		 ROUTEOUT: <21:rfrf:7> with rel: rfrf
+		 ROUTEOUT: <21:rfrffr:7> with rel: rfrffr
+		 ROUTEOUT: <21:rfrffrfr:7> with rel: rfrffrfr
+		 ROUTEOUT: <21:rfrffrfrfr:7> with rel: rfrffrfrfr
+		 ROUTEOUT: <21:rfrffrfrfrfr:7> with rel: rfrffrfrfrfr
+		 ROUTEOUT: <2:ff:4> with rel: ff
+		 ROUTEOUT: <5:rfffrffrffrfffr:9> with rel: rfffrffrffrfffr
+		 ROUTEOUT: <5:rfffrffrffrfffr:8> with rel: rfffrffrffrfffr
+		 ROUTEOUT: <10:rff:15> with rel: rff
+		 ROUTEOUT: <10:rff:14> with rel: rff
+		 ROUTEOUT: <10:rfffrf:15> with rel: rfffrf
+		 ROUTEOUT: <10:rfffrf:14> with rel: rfffrf
+		 ROUTEOUT: <10:rfffrffrf:15> with rel: rfffrffrf
+		 ROUTEOUT: <10:rfffrffrf:14> with rel: rfffrffrf
+		 ROUTEOUT: <10:rfffrffrffrf:15> with rel: rfffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrf:14> with rel: rfffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrff:15> with rel: rfffrffrffrfrff
+		 ROUTEOUT: <10:rfffrffrffrfrff:14> with rel: rfffrffrffrfrff
+		 ROUTEOUT: <10:rfffrffrffrfrfffrf:15> with rel: rfffrffrffrfrfffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrf:14> with rel: rfffrffrffrfrfffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrf:15> with rel: rfffrffrffrfrfffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrf:14> with rel: rfffrffrffrfrfffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrf:15> with rel: rfffrffrffrfrfffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrf:14> with rel: rfffrffrffrfrfffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffr:15> with rel: rfffrffrffrfrfffrffrffrfffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffr:14> with rel: rfffrffrffrfrfffrffrffrfffr
+		 ROUTEOUT: <0:ffff:1> with rel: ffff
+		 ROUTEOUT: <2:ffff:4> with rel: ffff
+		 ROUTEOUT: <5:rfffrffrffrfffrffr:9> with rel: rfffrffrffrfffrffr
+		 ROUTEOUT: <5:rfffrffrffrfffrffr:8> with rel: rfffrffrffrfffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffr:15> with rel: rfffrffrffrfrfffrffrffrfffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffr:14> with rel: rfffrffrffrfrfffrffrffrfffrffr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffr:9> with rel: rfffrffrffrfffrffrffr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffr:8> with rel: rfffrffrffrfffrffrffr
+		 ROUTEOUT: <2:ffffff:4> with rel: ffffff
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffr:9> with rel: rfffrffrffrfffrffrffrffr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffr:8> with rel: rfffrffrffrfffrffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffr:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffr:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffr:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffr:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffr:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffr:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffr
+		 ROUTEOUT: <17:rf:20> with rel: rf
+		 ROUTEOUT: <17:rf:3> with rel: rf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrff:9> with rel: rfffrffrffrfffrffrffrffrrff
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrff:8> with rel: rfffrffrffrfffrffrffrffrrff
+		 ROUTEOUT: <21:rfrffrfrfrfrrf:7> with rel: rfrffrfrfrfrrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrff:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrff
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrff:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrff
+		 ROUTEOUT: <17:rffr:20> with rel: rffr
+		 ROUTEOUT: <17:rffr:3> with rel: rffr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffr:7> with rel: rfrffrfrfrfrrffr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrf
+		 ROUTEOUT: <17:rffrfr:20> with rel: rffrfr
+		 ROUTEOUT: <17:rffrfr:3> with rel: rffrfr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffrfr:7> with rel: rfrffrfrfrfrrffrfr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrf
+		 ROUTEOUT: <17:rffrfrfr:20> with rel: rffrfrfr
+		 ROUTEOUT: <17:rffrfrfr:3> with rel: rffrfrfr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffrfrfr:7> with rel: rfrffrfrfrfrrffrfrfr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrf
+		 ROUTEOUT: <17:rffrfrfrfr:20> with rel: rffrfrfrfr
+		 ROUTEOUT: <17:rffrfrfrfr:3> with rel: rffrfrfrfr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffrfrfrfr:7> with rel: rfrffrfrfrfrrffrfrfrfr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrf
+		 ROUTEOUT: <17:rffrfrfrfrfr:20> with rel: rffrfrfrfrfr
+		 ROUTEOUT: <17:rffrfrfrfrfr:3> with rel: rffrfrfrfrfr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffrfrfrfrfr:7> with rel: rfrffrfrfrfrrffrfrfrfrfr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrf
+		 ROUTEOUT: <17:rffrfrfrfrfrfr:20> with rel: rffrfrfrfrfrfr
+		 ROUTEOUT: <17:rffrfrfrfrfrfr:3> with rel: rffrfrfrfrfrfr
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf:9> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf
+		 ROUTEOUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf:8> with rel: rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf
+		 ROUTEOUT: <21:rfrffrfrfrfrrffrfrfrfrfrfr:7> with rel: rfrffrfrfrfrrffrfrfrfrfrfr
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf:15> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf
+		 ROUTEOUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf:14> with rel: rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf
+		 DELTA: ff|f
+	 x8
+		 ID: 16
+		 ID: 20
+		 ID: 9
+		 ID: 13
+		 ID: 15
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <16:t2b:20> with rel: r
+		 ROUTE: <20:t2c:9> with rel: f
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <17:rf:20> with rel: rf
+		 ROUTEOUT: <17:rf:3> with rel: rf
+		 ROUTEOUT: <21:rf:7> with rel: rf
+		 ROUTEOUT: <21:rfrf:7> with rel: rfrf
+		 ROUTEOUT: <21:rfrfrf:7> with rel: rfrfrf
+		 ROUTEOUT: <10:rff:15> with rel: rff
+		 ROUTEOUT: <10:rff:14> with rel: rff
+		 ROUTEOUT: <5:rff:9> with rel: rff
+		 ROUTEOUT: <5:rff:8> with rel: rff
+		 ROUTEOUT: <10:rffrff:15> with rel: rffrff
+		 ROUTEOUT: <10:rffrff:14> with rel: rffrff
+		 ROUTEOUT: <5:rffrff:9> with rel: rffrff
+		 ROUTEOUT: <5:rffrff:8> with rel: rffrff
+		 ROUTEOUT: <10:rffrffrff:15> with rel: rffrffrff
+		 ROUTEOUT: <10:rffrffrff:14> with rel: rffrffrff
+	 x9
+		 ID: 20
+		 ID: 9
+		 ID: 13
+		 ID: 15
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <20:t2c:9> with rel: f
+		 ROUTE: <9:t1b:13> with rel: ε
+		 ROUTE: <9:t2a:15> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <15:t1b:18> with rel: ε
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <5:ff:9> with rel: ff
+		 ROUTEOUT: <5:ff:8> with rel: ff
+		 ROUTEOUT: <21:f:7> with rel: f
+		 ROUTEOUT: <10:ff:15> with rel: ff
+		 ROUTEOUT: <10:ff:14> with rel: ff
+		 ROUTEOUT: <10:ffff:15> with rel: ffff
+		 ROUTEOUT: <10:ffff:14> with rel: ffff
+		 ROUTEOUT: <17:f:20> with rel: f
+		 ROUTEOUT: <17:f:3> with rel: f
+		 ROUTEOUT: <5:ffff:9> with rel: ffff
+		 ROUTEOUT: <5:ffff:8> with rel: ffff
+		 ROUTEOUT: <21:ff:7> with rel: ff
+		 ROUTEOUT: <10:ffffff:15> with rel: ffffff
+		 ROUTEOUT: <10:ffffff:14> with rel: ffffff
+	 x10
+		 ID: 3
+		 ID: 6
+		 ID: 7
+		 ID: 8
+		 ID: 12
+		 ID: 0
+		 ID: 13
+		 ID: 14
+		 ID: 17
+		 ID: 2
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <3:t1c:6> with rel: ε
+		 ROUTE: <3:t2a:7> with rel: ε
+		 ROUTE: <3:t2c:8> with rel: f
+		 ROUTE: <6:t2a:12> with rel: ε
+		 ROUTE: <6:t2c:0> with rel: f
+		 ROUTE: <7:t1c:12> with rel: ε
+		 ROUTE: <7:t2b:13> with rel: r
+		 ROUTE: <8:t1c:0> with rel: ε
+		 ROUTE: <8:t2a:14> with rel: ε
+		 ROUTE: <12:t2b:17> with rel: r
+		 ROUTE: <0:t2a:2> with rel: ε
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <14:t1c:2> with rel: ε
+		 ROUTE: <14:t2b:19> with rel: r
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <2:t2b:5> with rel: r
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <5:rf:9> with rel: rf
+		 ROUTEOUT: <5:rf:8> with rel: rf
+		 ROUTEOUT: <6:ε:11> with rel: ε
+		 ROUTEOUT: <17:r:20> with rel: r
+		 ROUTEOUT: <17:r:3> with rel: r
+		 ROUTEOUT: <5:rfrf:9> with rel: rfrf
+		 ROUTEOUT: <5:rfrf:8> with rel: rfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:rr:20> with rel: rr
+		 ROUTEOUT: <17:rr:3> with rel: rr
+		 ROUTEOUT: <5:rfrfrf:9> with rel: rfrfrf
+		 ROUTEOUT: <5:rfrfrf:8> with rel: rfrfrf
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:rrr:20> with rel: rrr
+		 ROUTEOUT: <17:rrr:3> with rel: rrr
+		 ROUTEOUT: <5:rfrfrfrf:9> with rel: rfrfrfrf
+		 ROUTEOUT: <5:rfrfrfrf:8> with rel: rfrfrfrf
+		 ROUTEOUT: <21:r:7> with rel: r
+		 ROUTEOUT: <21:rr:7> with rel: rr
+		 ROUTEOUT: <21:rrr:7> with rel: rrr
+		 ROUTEOUT: <21:rrrr:7> with rel: rrrr
+		 ROUTEOUT: <10:rf:15> with rel: rf
+		 ROUTEOUT: <10:rf:14> with rel: rf
+		 ROUTEOUT: <10:rfrf:15> with rel: rfrf
+		 ROUTEOUT: <10:rfrf:14> with rel: rfrf
+		 ROUTEOUT: <10:rfrfrf:15> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrf:14> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:15> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:14> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:15> with rel: rfrfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrfrf:14> with rel: rfrfrfrfrf
+		 ROUTEOUT: <5:rfrfrfrffr:9> with rel: rfrfrfrffr
+		 ROUTEOUT: <5:rfrfrfrffr:8> with rel: rfrfrfrffr
+		 ROUTEOUT: <2:f:4> with rel: f
+		 ROUTEOUT: <5:rfrfrfrffrfr:9> with rel: rfrfrfrffrfr
+		 ROUTEOUT: <5:rfrfrfrffrfr:8> with rel: rfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffr:15> with rel: rfrfrfrfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffr:14> with rel: rfrfrfrfrffr
+		 ROUTEOUT: <10:rfrfrfrfrffrfr:15> with rel: rfrfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfr:14> with rel: rfrfrfrfrffrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfr:15> with rel: rfrfrfrfrffrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfr:14> with rel: rfrfrfrfrffrfrfr
+		 ROUTEOUT: <0:f:1> with rel: f
+		 ROUTEOUT: <2:ff:4> with rel: ff
+		 ROUTEOUT: <5:rfrfrfrffrfrfr:9> with rel: rfrfrfrffrfrfr
+		 ROUTEOUT: <5:rfrfrfrffrfrfr:8> with rel: rfrfrfrffrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfrfr:15> with rel: rfrfrfrfrffrfrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfrfr:14> with rel: rfrfrfrfrffrfrfrfr
+		 ROUTEOUT: <0:ff:1> with rel: ff
+		 ROUTEOUT: <2:fff:4> with rel: fff
+		 ROUTEOUT: <5:rfrfrfrffrfrfrfr:9> with rel: rfrfrfrffrfrfrfr
+		 ROUTEOUT: <5:rfrfrfrffrfrfrfr:8> with rel: rfrfrfrffrfrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfrfrfr:15> with rel: rfrfrfrfrffrfrfrfrfr
+		 ROUTEOUT: <10:rfrfrfrfrffrfrfrfrfr:14> with rel: rfrfrfrfrffrfrfrfrfr
+		 DELTA: f
+	 x11
+		 ID: 7
+		 ID: 12
+		 ID: 13
+		 ID: 17
+		 ID: 18
+		 ID: 19
+		 ID: 21
+		 ID: 5
+		 ID: 22
+		 ID: 10
+		 ROUTE: <7:t1c:12> with rel: ε
+		 ROUTE: <7:t2b:13> with rel: r
+		 ROUTE: <12:t2b:17> with rel: r
+		 ROUTE: <13:t1c:17> with rel: ε
+		 ROUTE: <13:t2a:18> with rel: ε
+		 ROUTE: <13:t2c:19> with rel: f
+		 ROUTE: <17:t2a:21> with rel: ε
+		 ROUTE: <17:t2c:5> with rel: f
+		 ROUTE: <18:t1c:21> with rel: ε
+		 ROUTE: <19:t1c:5> with rel: ε
+		 ROUTE: <19:t2a:22> with rel: ε
+		 ROUTE: <5:t2a:10> with rel: ε
+		 ROUTE: <22:t1c:10> with rel: ε
+		 ROUTEOUT: <10:rf:15> with rel: rf
+		 ROUTEOUT: <10:rf:14> with rel: rf
+		 ROUTEOUT: <5:rf:9> with rel: rf
+		 ROUTEOUT: <5:rf:8> with rel: rf
+		 ROUTEOUT: <10:rfrf:15> with rel: rfrf
+		 ROUTEOUT: <10:rfrf:14> with rel: rfrf
+		 ROUTEOUT: <21:r:7> with rel: r
+		 ROUTEOUT: <12:ε:16> with rel: ε
+		 ROUTEOUT: <17:r:20> with rel: r
+		 ROUTEOUT: <17:r:3> with rel: r
+		 ROUTEOUT: <5:rfrf:9> with rel: rfrf
+		 ROUTEOUT: <5:rfrf:8> with rel: rfrf
+		 ROUTEOUT: <10:rfrfrf:15> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrf:14> with rel: rfrfrf
+		 ROUTEOUT: <21:rr:7> with rel: rr
+		 ROUTEOUT: <17:rr:20> with rel: rr
+		 ROUTEOUT: <17:rr:3> with rel: rr
+		 ROUTEOUT: <5:rfrfrf:9> with rel: rfrfrf
+		 ROUTEOUT: <5:rfrfrf:8> with rel: rfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:15> with rel: rfrfrfrf
+		 ROUTEOUT: <10:rfrfrfrf:14> with rel: rfrfrfrf
+		 ROUTEOUT: <21:rrr:7> with rel: rrr
 Generation Diagnosticator
 	 STATE: 0
-		 ROUTE OUT: <0:ε:1> with rel: fr
+		 ROUTE OUT: <0:ε:1> with rel: rrr
+		 ROUTE OUT: <2:ε:4> with rel: rrr
+		 ROUTE OUT: <5:r:9> with rel: rrr
+		 ROUTE OUT: <5:r:8> with rel: rrr
+		 ROUTE OUT: <10:r:15> with rel: rrr
+		 ROUTE OUT: <10:r:14> with rel: rrr
 		 DELTA: ε
 	 STATE: 1
-		 ROUTE OUT: <1:ε:2> with rel: fr
+		 ROUTE OUT: <6:ε:11> with rel: rrr
+		 ROUTE OUT: <12:ε:16> with rel: rrr
+		 ROUTE OUT: <0:ff:1> with rel: rrr
+		 ROUTE OUT: <17:rrrrrr:20> with rel: rrr
+		 ROUTE OUT: <17:rrrrrr:3> with rel: rrr
+		 ROUTE OUT: <2:fff:4> with rel: rrr
+		 ROUTE OUT: <21:rrrrrrrrrr:7> with rel: rrr
+		 ROUTE OUT: <5:rfrffrfrrfrfrfrfrfrfrffrfr:9> with rel: rrr
+		 ROUTE OUT: <5:rfrffrfrrfrfrfrfrfrfrffrfr:8> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr:15> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrffrfrrfrfrfrfrfrfrffrfrfr:14> with rel: rrr
+		 DELTA: ε|f
 	 STATE: 2
-		 ROUTE OUT: <3:ε:6> with rel: fr
-		 ROUTE OUT: <5:r:8> with rel: fr
-		 ROUTE OUT: <0:fr:1> with rel: fr
-		 DELTA: ε|fr|frf|f
+		 ROUTE OUT: <12:ε:16> with rel: rrr
+		 ROUTE OUT: <17:rrr:20> with rel: rrr
+		 ROUTE OUT: <17:rrr:3> with rel: rrr
+		 ROUTE OUT: <21:rrrrr:7> with rel: rrr
+		 ROUTE OUT: <5:rfrfrfrfrf:9> with rel: rrr
+		 ROUTE OUT: <5:rfrfrfrfrf:8> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrfrfrf:15> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrfrfrf:14> with rel: rrr
+		 DELTA: ε
 	 STATE: 3
-		 ROUTE OUT: <10:r:11> with rel: fr
-		 ROUTE OUT: <1:rf:2> with rel: fr
+		 ROUTE OUT: <17:ε:20> with rel: rrr
+		 ROUTE OUT: <17:ε:3> with rel: rrr
+		 ROUTE OUT: <21:ε:7> with rel: rrr
+		 ROUTE OUT: <5:ff:9> with rel: rrr
+		 ROUTE OUT: <5:ff:8> with rel: rrr
+		 ROUTE OUT: <10:fff:15> with rel: rrr
+		 ROUTE OUT: <10:fff:14> with rel: rrr
 	 STATE: 4
-		 ROUTE OUT: <10:ε:11> with rel: fr
-		 ROUTE OUT: <1:f:2> with rel: fr
+		 ROUTE OUT: <0:ε:1> with rel: rrr
+		 ROUTE OUT: <2:ε:4> with rel: rrr
+		 ROUTE OUT: <5:rrr:9> with rel: rrr
+		 ROUTE OUT: <5:rrr:8> with rel: rrr
+		 ROUTE OUT: <10:rrrr:15> with rel: rrr
+		 ROUTE OUT: <10:rrrr:14> with rel: rrr
+		 DELTA: ε
 	 STATE: 5
-		 ROUTE OUT: <11:ε:12> with rel: fr
+		 ROUTE OUT: <21:ε:7> with rel: rrr
 	 STATE: 6
-		 ROUTE OUT: <10:fr:11> with rel: fr
-		 ROUTE OUT: <1:frf:2> with rel: fr
+		 ROUTE OUT: <2:ε:4> with rel: rrr
+		 ROUTE OUT: <5:rr:9> with rel: rrr
+		 ROUTE OUT: <5:rr:8> with rel: rrr
+		 ROUTE OUT: <10:rrr:15> with rel: rrr
+		 ROUTE OUT: <10:rrr:14> with rel: rrr
+		 DELTA: ε
+	 STATE: 7
+		 ROUTE OUT: <6:f:11> with rel: rrr
+		 ROUTE OUT: <12:fff:16> with rel: rrr
+		 ROUTE OUT: <0:ffff:1> with rel: rrr
+		 ROUTE OUT: <17:rffrfrfrfrfrfr:20> with rel: rrr
+		 ROUTE OUT: <17:rffrfrfrfrfrfr:3> with rel: rrr
+		 ROUTE OUT: <2:ffffff:4> with rel: rrr
+		 ROUTE OUT: <21:rfrffrfrfrfrrffrfrfrfrfrfr:7> with rel: rrr
+		 ROUTE OUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf:9> with rel: rrr
+		 ROUTE OUT: <5:rfffrffrffrfffrffrffrffrrfffrffrffrffrffrffrf:8> with rel: rrr
+		 ROUTE OUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf:15> with rel: rrr
+		 ROUTE OUT: <10:rfffrffrffrfrfffrffrffrfffrffrffrffrffrrfffrffrffrffrffrffrf:14> with rel: rrr
+		 DELTA: ff|f
+	 STATE: 8
+		 ROUTE OUT: <17:rf:20> with rel: rrr
+		 ROUTE OUT: <17:rf:3> with rel: rrr
+		 ROUTE OUT: <21:rfrfrf:7> with rel: rrr
+		 ROUTE OUT: <5:rffrff:9> with rel: rrr
+		 ROUTE OUT: <5:rffrff:8> with rel: rrr
+		 ROUTE OUT: <10:rffrffrff:15> with rel: rrr
+		 ROUTE OUT: <10:rffrffrff:14> with rel: rrr
+	 STATE: 9
+		 ROUTE OUT: <17:f:20> with rel: rrr
+		 ROUTE OUT: <17:f:3> with rel: rrr
+		 ROUTE OUT: <21:ff:7> with rel: rrr
+		 ROUTE OUT: <5:ffff:9> with rel: rrr
+		 ROUTE OUT: <5:ffff:8> with rel: rrr
+		 ROUTE OUT: <10:ffffff:15> with rel: rrr
+		 ROUTE OUT: <10:ffffff:14> with rel: rrr
+	 STATE: 10
+		 ROUTE OUT: <6:ε:11> with rel: rrr
+		 ROUTE OUT: <12:ε:16> with rel: rrr
+		 ROUTE OUT: <0:ff:1> with rel: rrr
+		 ROUTE OUT: <17:rrr:20> with rel: rrr
+		 ROUTE OUT: <17:rrr:3> with rel: rrr
+		 ROUTE OUT: <2:fff:4> with rel: rrr
+		 ROUTE OUT: <21:rrrr:7> with rel: rrr
+		 ROUTE OUT: <5:rfrfrfrffrfrfrfr:9> with rel: rrr
+		 ROUTE OUT: <5:rfrfrfrffrfrfrfr:8> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrffrfrfrfrfr:15> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrfrffrfrfrfrfr:14> with rel: rrr
+		 DELTA: f
+	 STATE: 11
+		 ROUTE OUT: <12:ε:16> with rel: rrr
+		 ROUTE OUT: <17:rr:20> with rel: rrr
+		 ROUTE OUT: <17:rr:3> with rel: rrr
+		 ROUTE OUT: <21:rrr:7> with rel: rrr
+		 ROUTE OUT: <5:rfrfrf:9> with rel: rrr
+		 ROUTE OUT: <5:rfrfrf:8> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrf:15> with rel: rrr
+		 ROUTE OUT: <10:rfrfrfrf:14> with rel: rrr
 Generation linear diagnostic
-	frf|fr|frfrf|frfr
-	rff|rffr|rf|rffrf
---- 0.008736133575439453 seconds ---
+	rrrrrrrfff|rrrrrrrff
+	rrrrrrrfff
+	rrrrrrrff|rrrrrrrf
+--- 0.03422665596008301 seconds ---

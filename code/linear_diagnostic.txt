@@ -1,2 +1,3 @@
-frf|fr|frfrf|frfr
-rff|rffr|rf|rffrf
+rrrrrrrfff|rrrrrrrff
+rrrrrrrfff
+rrrrrrrff|rrrrrrrf

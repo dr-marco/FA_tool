@@ -557,7 +557,6 @@ def reg_expr_closing(closing_space):
                     elif output_route.finish_node == final_node:
                         output_route.rif_node = node         
         else:
-            #print("cacca", len(list_routes), len(list_route_node_input), len(list_route_node_output))
             remove = False
             for input_route in list_route_node_input:
                 remove = True
@@ -596,7 +595,6 @@ def clear_label(label1, label2, autolabel = None, set_label1 = None, set_label2 
     new_label_set = {new_label}
     #print("clear_label", label1, label2, set_label1, set_label2, autolabel, set_auto)
     if autolabel and autolabel != '\u03b5':
-        #print("autolabel", autolabel, "merda", set_auto)
         autolabel = "(" + autolabel + ")"
         autolabel, set_auto = clear_label(autolabel, '*', set_label1={autolabel}, set_label2={'*'})
     if label1 ==  '\u03b5' and label2 == '\u03b5':
@@ -646,7 +644,6 @@ def clear_label(label1, label2, autolabel = None, set_label1 = None, set_label2 
             
             new_label = '|'.join(labels)
             new_label_set = labels
-            #print("sono qua",new_label, "merda", new_label_set)
             
         else:
             

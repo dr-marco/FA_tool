@@ -9,17 +9,17 @@ state1b = State(alias = '1')
 
 s1 = Transition(state0s, state1s, label_oss = 'act', alias = 's1')
 s2 = Transition(state1s, state0s, label_oss = 'sby', alias = 's2')
-s3 = Transition(state0s, state0s, label_rel = 'f', alias = 's3')
-s4 = Transition(state1s, state1s, label_rel = 'r', alias = 's4')
+s3 = Transition(state0s, state0s, label_rel = 'f1', alias = 's3')
+s4 = Transition(state1s, state1s, label_rel = 'f2', alias = 's4')
 
 b1 = Transition(state0b, state1b, label_oss = 'opn', alias = 'b1')
 b2 = Transition(state1b, state0b, label_oss = 'cls', alias = 'b2')
-b3 = Transition(state0b, state0b, label_rel = 'h', alias = 'b3')
-b4 = Transition(state1b, state1b, label_rel = 'g', alias = 'b4')
+b3 = Transition(state0b, state0b, label_rel = 'f3', alias = 'b3')
+b4 = Transition(state1b, state1b, label_rel = 'f4', alias = 'b4')
 b5 = Transition(state0b, state0b, label_oss = 'nop', alias = 'b5')
 b6 = Transition(state1b, state1b, label_oss = 'nop', alias = 'b6')
-b7 = Transition(state0b, state1b, label_rel = 'k', label_oss = 'opn', alias = 'b7')
-b8 = Transition(state1b, state0b, label_rel = 'j', label_oss = 'cls', alias = 'b8')
+b7 = Transition(state0b, state1b, label_rel = 'f5', label_oss = 'opn', alias = 'b7')
+b8 = Transition(state1b, state0b, label_rel = 'f6', label_oss = 'cls', alias = 'b8')
 
 
 
@@ -60,5 +60,5 @@ b8.input_event_func = function_opL
 
 net = Net([S, B], [L])
 
-with open("net3.pickle", "wb") as f:
+with open("net_alt.pickle", "wb") as f:
     pickle.dump(net, f)
