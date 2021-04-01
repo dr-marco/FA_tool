@@ -273,13 +273,14 @@ def reg_expr(oss_space):
                             if route.label_rel[0] == '(' and route.label_rel[-1] == ')' and route.label_rel[-2]!='*':
                                 route.label_rel = route.label_rel[1:-1]
                         #print(route.label_rel)
-                        new_labels_rel.add(route.label_rel)
+                        for label_t in route.set_label_rel:
+                            new_labels_rel.add(label_t)
                         list_routes.remove(route)
                         list_route_node_output.remove(route)
                     
                     new_label_rel = '|'.join(new_labels_rel)
                     #print(new_label_rel)
-                    new_route = Route(node, key, label_rel = "(" + new_label_rel + ")")
+                    new_route = Route(node, key, label_rel = new_label_rel)
                     new_route.set_label_rel = new_labels_rel
                     list_routes.append(new_route)
                     list_route_node_output.append(new_route)
@@ -340,21 +341,25 @@ def reg_expr(oss_space):
         if len(route.label_rel) > 2:
             if route.label_rel[0] == '(' and route.label_rel[-1] == ')' and route.label_rel[-2]!='*':
                 route.label_rel = route.label_rel[1:-1]
+            
         if len(route.set_label_rel) > 1:
             list_label = route.label_rel.split("|")
             for label in list_label:
+                if label[0] == '(' and label[-1] == ')' and label[-2]!='*':
+                    label = label[1:-1]
                 final_labels.add(label)
+
             '''for label in route.set_label_rel:
                 final_labels.add(label)'''
         else:
             final_labels.add(route.label_rel)
-    
     final_label = '|'.join(final_labels)
     #new_route = Route(node, key, label_rel = final_label)
         
     return final_label #return regular expression
 
 def reg_expr_closing(closing_space):
+    
     list_routes = closing_space.list_routes
     list_nodes = [node.node for node in closing_space.list_nodes]
     initial_node = closing_space.initial_node
@@ -364,7 +369,6 @@ def reg_expr_closing(closing_space):
     #list_final_routes = []
     list_nodes_not_final = []
     ex_initial_node_id = -2
-    
     if len(list_nodes) == 1:
         new_route = Route(initial_node.node, initial_node.node)
         new_route.label_rel = '\u03b5'
@@ -373,6 +377,7 @@ def reg_expr_closing(closing_space):
 
     
     if any(route for route in list_routes if route.finish_node.id == initial_node.node.id):
+        
         place_holder_node = Node([],[])
         new_route = Route(place_holder_node, initial_node.node)
         list_routes.append(new_route)
@@ -403,7 +408,7 @@ def reg_expr_closing(closing_space):
                 list_nodes_not_final.remove(route.start_node)
 
     number_expr_nodes = len(list_final_output_nodes)
-    #print(initial_node.node.id)
+    
     if initial_node.node in list_nodes_not_final:
         list_nodes_not_final.remove(initial_node.node)
 
@@ -431,13 +436,19 @@ def reg_expr_closing(closing_space):
                         if len(route.label_rel) > 2:
                             if route.label_rel[0] == '(' and route.label_rel[-1] == ')':
                                 route.label_rel = route.label_rel[1:-1]
-                        new_labels_rel.add(route.label_rel)
+                        for label_t in route.set_label_rel:
+                            new_labels_rel.add(label_t)
                         list_routes.remove(route)
                         list_route_node_output.remove(route)
                     
                     new_label_rel = '|'.join(new_labels_rel)
-                    new_route = Route(node, key, label_rel = "(" + new_label_rel + ")")
+                    if len(new_labels_rel) > 1:
+                        new_route = Route(node, key, label_rel = new_label_rel)
+                    else:
+                        new_route = Route(node, key, label_rel = new_label_rel)
+                    #print(new_route.label_rel)
                     new_route.set_label_rel = new_labels_rel
+                    
                     list_routes.append(new_route)
                     list_route_node_output.append(new_route)
 
@@ -487,8 +498,8 @@ def reg_expr_closing(closing_space):
                 list_routes.remove(output_route)
         list_nodes_not_final.remove(node)
     
+
     #### QUA####
-    
     while len(list_final_output_nodes) > 0:
         list_route_node_auto = []
         list_route_node_input = []
@@ -588,7 +599,25 @@ def reg_expr_closing(closing_space):
                         output_route.rif_node = node
         list_final_output_nodes.remove(node)
 
-    return list_routes
+    '''for route in list_routes:
+        print(closing_space.id, route.label_rel, route.rif_node.id)'''
+    already_done = []
+    routes = []
+
+    for route in list_routes:
+        if not route.rif_node.id in already_done:
+            labels = set()
+            gen = (r for r in list_routes if r.rif_node.id == route.rif_node.id)
+            for r in gen:
+                labels.add(r.label_rel)
+            
+            route.label_rel = "|".join(labels)
+            route.set_label_rel = labels
+            routes.append(route)
+            already_done.append(route.rif_node.id)
+
+
+    return routes
 
 def clear_label(label1, label2, autolabel = None, set_label1 = None, set_label2 = None, set_auto = None):
     new_label = ''
@@ -654,48 +683,67 @@ def clear_label(label1, label2, autolabel = None, set_label1 = None, set_label2 
     return new_label, new_label_set
 
 def linear_diagnostic(diagnosticator_space, osservation):
-    X = set()
-    X.add((diagnosticator_space.initial_state.id,'\u03b5'))
-    X_final = set()
-    X_final.update(X)
+    X = []
+    X.append((diagnosticator_space.initial_state.id,'\u03b5'))
+
+    X_final = []
+    X_final += X
     list_states = diagnosticator_space.list_states
     for o in osservation:
-        Xnew = set()
+        Xnew = []
         #print("osservazione", o)
         for (state_id, p) in X:
             groups = groupby(list_states[state_id].list_routes, attrgetter('finish_state')) #o(n)
+            #print(state_id)
             #print("STATO", state_id, list_states[state_id].delta)
             for (key, data) in groups:
+                #print(key.id)
                 routes = list(data)
                 for route in routes:
                     if route.label_oss == o:
-                        new_p, temp = clear_label(p, route.label_rel)
+                        p_label_set = set(p.split("|"))
+                        route_label_set = set(route.label_rel.split("|"))
+                        new_p, temp = clear_label(p, route.label_rel, set_label1 = p_label_set, set_label2 = route_label_set)
+                        #print("\t", new_p, p, route.label_rel, route.set_label_rel, )
                         add = True
-                        
                         for e_tuple_temp in Xnew:
                             if e_tuple_temp[0] == route.finish_state.id and sorted(e_tuple_temp[1]) != sorted(new_p):
                                 #c'è un errore
                                 lst = list(e_tuple_temp)
-                                #print("stato aggiunto", route.finish_state.id, e_tuple_temp[1])
                                 add = False
-                                lst[1] = e_tuple_temp[1] + '|' + new_p
+
+                                label_set = set()
+                                label_set.add(e_tuple_temp[1])
+                                label_set.add(new_p)
+
+                                lst[1] = '|'.join(label_set)
                                 e_tuple_temp = tuple(lst)
+                                #print("\tdio", lst[1])
                                 break
                         if add:
                             #print("stato aggiunto", route.finish_state.id)
-                            Xnew.add((route.finish_state.id, new_p))
+                            Xnew.append((route.finish_state.id, new_p))
+                        #print("\t\t", add)
         X = copy.deepcopy(Xnew)
-        X_final.update(Xnew)
+        X_final += Xnew
+        #print(X_final)
     final_diagnosis = []
-    labels_to_return = []
+    labels_to_return = set()
     for e in Xnew:
         state = list_states[e[0]]
         if state.delta != '':
             list_delta = set(state.delta.split('|'))
-            label, temp = clear_label(e[1], state.delta, set_label1={e[1]}, set_label2=list_delta)
-            labels_to_return.append(label)
+            p_label_set = set(e[1].split("|"))
+            p = "|".join(p_label_set)
+            delta = "|".join(list_delta)
+            label, temp = clear_label(p, delta, set_label1=p_label_set, set_label2=list_delta)
+            labels_to_return.add(frozenset(temp))
 
-    return labels_to_return
+    for frozen in labels_to_return:
+        final_diagnosis.append('|'.join(list(frozen)))
+
+    #print(final_diagnosis)
+    return final_diagnosis
 
 
 

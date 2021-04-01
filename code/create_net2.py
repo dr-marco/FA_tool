@@ -13,14 +13,14 @@ state31 = State(alias = '31')
 
 t1a = Transition(state10, state11, alias = 't1a')
 t1b = Transition(state11, state10, alias = 't1b')
-t1c = Transition(state10, state11, label_rel = 'f', alias = 't1c')
+t1c = Transition(state10, state11, label_rel = 'f1', alias = 't1c')
 
 t2a = Transition(state20, state21, label_oss = 'o1', alias = 't2a')
 t2b = Transition(state21, state20, label_oss = 'o2', alias = 't2b')
 
 t3a = Transition(state30, state31, alias = 't3a')
 t3b = Transition(state31, state30, alias = 't3b')
-t3c = Transition(state31, state31, label_rel = 'r', alias = 't3c')
+t3c = Transition(state31, state31, label_rel = 'f3', alias = 't3c')
 
 list_state_C1 = [state10, state11]
 list_transition_C1 = [t1a, t1b, t1c]

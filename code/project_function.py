@@ -271,6 +271,7 @@ def generator_closures_space_and_diagnosticator(behavior_space):
 				if route_out.start_node.id == route.rif_node.id and route_out.start_state.id == closure.id:
 					new_route = route_out
 					new_label, set_label = fn.clear_label(route_out.label_rel, route.label_rel, set_label1=route_out.set_label_rel, set_label2=route.set_label_rel )
+				
 					'''new_label = ''
 					if route_out.label_rel ==  '\u03b5' and route.label_rel == '\u03b5':
 					   new_label = '\u03b5'
@@ -297,7 +298,7 @@ def generator_closures_space_and_diagnosticator(behavior_space):
 	for state in list_states:
 		text_to_file += "\t STATE: " + str(state.id) + "\n"
 		for route in state.list_routes:
-			text_to_file += "\t\t ROUTE OUT: <" + str(route.start_node.id) + ":" + route.label_rel + ":" + str(route.finish_node.id)+ "> with rel: " + new_route.label_rel + "\n"
+			text_to_file += "\t\t ROUTE OUT: <" + str(route.start_node.id) + ":" + route.alias + ":" + str(route.finish_node.id)+ "> with rel: " + route.label_rel + "\n"
 		if state.delta:
 			text_to_file += '\t\t DELTA: ' + state.delta + "\n"
 	diagnosticator_space = Diagnosticator_Space(list_states[0], list_states)
@@ -395,7 +396,7 @@ def generator_closures_space(behavior_space):
 	for state in list_states:
 		text_to_file += "\t STATE: " + str(state.id) + "\n"
 		for route in state.list_routes:
-			text_to_file += "\t\t ROUTE OUT: <" + str(route.start_node.id) + ":" + route.label_rel + ":" + str(route.finish_node.id)+ "> with rel: " + new_route.label_rel + "\n"
+			text_to_file += "\t\t ROUTE OUT: <" + str(route.start_node.id) + ":" + route.alias + ":" + str(route.finish_node.id)+ "> with rel: " + new_route.label_rel + "\n"
 		if state.delta:
 			text_to_file += '\t\t DELTA: ' + state.delta + "\n"
 	for i in range(0, len(list_states)):
@@ -428,7 +429,16 @@ def generator_diagnosticator(closure_space):
 			list_states[closure.id].list_routes.append(new_route)
 			
 	
+	text_to_file += "Generation Diagnosticator\n"
 	diagnosticator_space = Diagnosticator_Space(list_states[0], list_states)
+	for state in list_states:
+		text_to_file += "\t STATE: " + str(state.id) + "\n"
+		for route in state.list_routes:
+			text_to_file += "\t\t ROUTE OUT: <" + str(route.start_node.id) + ":" + route.alias + ":" + str(route.finish_node.id)+ "> with rel: " + new_route.label_rel + "\n"
+		if state.delta:
+			text_to_file += '\t\t DELTA: ' + state.delta + "\n"
+	for i in range(0, len(list_states)):
+		closure_space.list_closures[i].list_output_routes =  list_states[i].list_routes
 	return diagnosticator_space
 
 def benchmark(net, oss_list, oss_list2):
@@ -442,6 +452,7 @@ def benchmark(net, oss_list, oss_list2):
 	
 	start_time_temp = time.time()
 	reg_expr = diagnosis_space(oss_space)
+	#print(reg_expr)
 	print("--- %s seconds ---" % (time.time() - start_time_temp))
 	
 	start_time_temp = time.time()
@@ -516,6 +527,7 @@ def steps(net=None, behavior_space=None, oss_space = None, closing_space = None,
 		text_to_file += "Generation linear diagnostic\n"
 		labels = fn.linear_diagnostic(diagnosticator, oss_list2)
 		for label in labels:
+
 			text_to_file += "\t" + label + "\n"
 		with open("linear_diagnostic.txt", "w") as f:
 			for label in labels:
@@ -524,7 +536,7 @@ def steps(net=None, behavior_space=None, oss_space = None, closing_space = None,
 	text_to_file += "--- %s seconds ---" % (time.time() - start_time)
 	#print("--- %s seconds ---" % (time.time() - start_time))
 
-	print(text_to_file)
+	#print(text_to_file)
 
 def main():
 	global text_to_file
@@ -534,7 +546,10 @@ def main():
 			raise Exception("[Error] -net is required")
 			return 1
 		else:
-			doc = fn.json_to_obj(args.net)
+			#doc = fn.json_to_obj(args.net)
+			with open('../pickle/net3.pickle', 'rb') as f:
+				doc = pickle.load(f)
+			#steps(net=doc, gen_bs=True, gen_bs_from_o=True, diagnosis=True, gen_closing=True, gen_diagnosticator=True, linear_diagnostic=True, oss_list=args.ol, oss_list2=args.ol2)
 			benchmark(doc, oss_list=args.ol, oss_list2=args.ol2)
 			return 0
 	if args.step:
@@ -618,6 +633,7 @@ if __name__ == "__main__":
 		ret_code = main()
 		with open("summary.txt", "w") as f:
 			f.write(text_to_file)
+		
 		exit(ret_code)
 	except KeyboardInterrupt:
 		print("[#] CTRL-C, aborting...")
